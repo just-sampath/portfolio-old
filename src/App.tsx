@@ -24,7 +24,6 @@ export function App() {
             <Route path="/work" element={<Work />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
-            <Route path="/sampath.github.io" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
       </div>
