@@ -12,7 +12,7 @@ export function App() {
   const { isDark, toggleTheme } = useTheme();
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <div className={`min-h-screen transition-colors duration-200 ${
         isDark ? 'dark bg-gray-900 text-text-primary-dark' : 'bg-gray-50 text-text-primary'
       }`}>
