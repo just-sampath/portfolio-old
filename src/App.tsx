@@ -1,5 +1,4 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useTheme } from './hooks/useTheme';
 import { Navbar } from './components/Navbar';
 import { Home } from './pages/Home';
@@ -12,10 +11,9 @@ export function App() {
   const { isDark, toggleTheme } = useTheme();
 
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <div className={`min-h-screen transition-colors duration-200 ${
-        isDark ? 'dark bg-gray-900 text-text-primary-dark' : 'bg-gray-50 text-text-primary'
-      }`}>
+    <BrowserRouter>
+      <div className={`min-h-screen transition-colors duration-200 ${isDark ? 'dark bg-gray-900 text-text-primary-dark' : 'bg-gray-50 text-text-primary'
+        }`}>
         <Navbar isDark={isDark} toggleTheme={toggleTheme} />
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <Routes>

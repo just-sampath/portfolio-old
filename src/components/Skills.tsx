@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Database, Terminal, Globe, Cpu, Bot, Brain, Container, Star, StarHalf } from 'lucide-react';
 
@@ -39,7 +38,7 @@ const item = {
   show: { opacity: 1, y: 0 }
 };
 
-function SkillRating({ rating, color }: { rating: number; color: string }) {
+function SkillRating({ rating }: { rating: number; color: string }) {
   const fullStars = Math.floor(rating);
   const hasHalfStar = rating % 1 !== 0;
   const emptyStars = 5 - Math.ceil(rating);
