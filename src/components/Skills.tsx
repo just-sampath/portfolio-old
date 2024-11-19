@@ -62,7 +62,7 @@ function SkillCard({ skill }: { skill: Skill }) {
       whileHover={{ scale: 1.02 }}
       className="mb-6 p-4 rounded-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm"
     >
-      <div className="flex items-center justify-between mb-2">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0">
         <div className="flex items-center space-x-3">
           <div className={`p-2 rounded-lg bg-gradient-to-br ${skill.color}`}>
             <div className="text-white w-5 h-5">
@@ -71,7 +71,9 @@ function SkillCard({ skill }: { skill: Skill }) {
           </div>
           <span className="font-medium">{skill.name}</span>
         </div>
-        <SkillRating rating={skill.rating} color={skill.color} />
+        <div className="pl-10 sm:pl-0">
+          <SkillRating rating={skill.rating} color={skill.color} />
+        </div>
       </div>
     </motion.div>
   );
