@@ -47,24 +47,36 @@ export function Experience() {
               key={index}
               className="vertical-timeline-element--work"
               contentStyle={{
-                background: 'var(--surface)',
-                color: 'var(--text-primary)',
-                boxShadow: '0 3px 0 var(--primary)'
+                background: 'transparent',
+                boxShadow: 'none',
+                padding: 0,
+                border: 'none'
               }}
-              contentArrowStyle={{ borderRight: '7px solid var(--primary)' }}
+              contentArrowStyle={{ 
+                display: 'none'
+              }}
               date={experience.date}
-              iconStyle={{ background: 'var(--primary)', color: '#fff' }}
-              icon={<Briefcase />}
+              dateClassName="text-text-secondary dark:text-text-secondary-dark font-medium"
+              iconStyle={{ 
+                background: 'var(--color-primary-500)',
+                color: '#fff',
+                boxShadow: 'none'
+              }}
+              icon={<Briefcase className="w-5 h-5" />}
             >
-              <h3 className="text-xl font-bold text-primary">{experience.title}</h3>
-              <h4 className="text-lg font-semibold mb-2">{experience.company}</h4>
-              <ul className="list-disc list-inside space-y-2">
-                {experience.points.map((point, pointIndex) => (
-                  <li key={pointIndex} className="text-text-secondary dark:text-text-secondary-dark">
-                    {point}
-                  </li>
-                ))}
-              </ul>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-xl font-bold text-primary dark:text-primary">{experience.title}</h3>
+                <h4 className="text-lg font-semibold mb-2 text-text-primary dark:text-text-primary-dark">
+                  {experience.company}
+                </h4>
+                <ul className="list-disc list-inside space-y-2">
+                  {experience.points.map((point, pointIndex) => (
+                    <li key={pointIndex} className="text-text-secondary dark:text-text-secondary-dark">
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </VerticalTimelineElement>
           ))}
         </VerticalTimeline>

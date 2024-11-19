@@ -32,15 +32,15 @@ export function Hero() {
         transition={{ duration: 0.8 }}
         className="relative z-10"
       >
-        <h1 className="text-6xl font-bold mb-6">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6">
           <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
             Yellapanthula Sai Sampath
           </span>
         </h1>
-        <p className="text-2xl text-text-secondary dark:text-text-secondary-dark mb-8 leading-relaxed max-w-2xl">
+        <p className="text-lg sm:text-xl md:text-2xl text-text-secondary dark:text-text-secondary-dark mb-6 sm:mb-8 leading-relaxed max-w-2xl">
           Software Development Engineer at Springworks | Full Stack Developer | AI Enthusiast
         </p>
-        <div className="flex space-x-4">
+        <div className="flex flex-wrap gap-4">
           {socialLinks.map(({ icon, href, label, gradient }) => (
             <IconButton
               key={label}
