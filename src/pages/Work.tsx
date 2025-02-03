@@ -17,7 +17,7 @@ export function Work() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="py-16"
+      className="pt-24 pb-16 min-h-screen"
       ref={containerRef}
       style={{ opacity, scale }}
     >

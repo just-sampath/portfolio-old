@@ -41,7 +41,7 @@ export function Contact() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen py-16"
+      className="pt-24 pb-16 min-h-screen"
       ref={containerRef}
       style={{ opacity, scale }}
     >

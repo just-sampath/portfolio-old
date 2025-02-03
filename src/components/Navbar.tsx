@@ -36,8 +36,8 @@ export function Navbar({ isDark, toggleTheme }: NavbarProps) {
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-lg'
+        isScrolled || isMenuOpen
+          ? 'bg-white dark:bg-gray-900 shadow-lg'
           : 'bg-transparent'
       }`}
     >
@@ -112,32 +112,56 @@ export function Navbar({ isDark, toggleTheme }: NavbarProps) {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden overflow-hidden"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-20 left-0 right-0 bg-white dark:bg-gray-900 shadow-xl"
             >
-              <div className="py-4 space-y-4">
+              <div className="px-4 py-6 space-y-4">
                 {navItems.map((item) => (
                   <motion.div
                     key={item.path}
-                    whileHover={{ x: 4 }}
-                    whileTap={{ x: 0 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <Link
                       to={item.path}
-                      className={`block px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
-                        isActive(item.path)
-                          ? 'text-white bg-gradient-to-r from-blue-400 to-purple-500'
-                          : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
-                      }`}
                       onClick={() => setIsMenuOpen(false)}
+                      className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200 ${
+                        isActive(item.path)
+                          ? 'bg-gradient-to-r from-blue-400 to-purple-500 text-white'
+                          : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                      }`}
                     >
                       {item.label}
                     </Link>
                   </motion.div>
                 ))}
+                
+                {/* Mobile Theme Toggle */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.2, delay: 0.1 }}
+                  className="px-4"
+                >
+                  <button
+                    onClick={() => {
+                      toggleTheme();
+                      setIsMenuOpen(false);
+                    }}
+                    className="flex items-center w-full px-4 py-3 rounded-lg text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  >
+                    <span className="mr-3">
+                      {isDark ? <Sun size={20} /> : <Moon size={20} />}
+                    </span>
+                    {isDark ? 'Light Mode' : 'Dark Mode'}
+                  </button>
+                </motion.div>
               </div>
             </motion.div>
           )}
