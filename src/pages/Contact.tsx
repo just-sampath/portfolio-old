@@ -1,12 +1,18 @@
 import { motion } from 'framer-motion';
-import { Github, Mail, Linkedin, MapPin, Phone } from 'lucide-react';
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
+import { Mail, MapPin, Phone, Github, Linkedin } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
-// Initialize EmailJS
-emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+const socialLinks = [
+  { icon: Github, href: 'https://github.com/just-sampath', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://linkedin.com/in/just-sampath', label: 'LinkedIn' }
+];
 
 export function Contact() {
+  useEffect(() => {
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -59,104 +65,136 @@ export function Contact() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-4xl mx-auto"
+      className="py-16"
     >
-      <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
-        Get in Touch
-      </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div className="space-y-8">
-          <div>
-            <h2 className="text-2xl font-semibold mb-4">Contact Information</h2>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <Mail className="text-primary" />
-                <a href="mailto:ysampath36@gmail.com" className="hover:text-primary transition-colors">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
+            Get in Touch
+          </h1>
+          <p className="text-lg text-text-secondary dark:text-text-secondary-dark">
+            Contact Information
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {/* Contact Info */}
+          <div className="space-y-8">
+            <div className="flex items-start space-x-4">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-primary to-primary-dark">
+                <Mail className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-1">Email</h3>
+                <a
+                  href="mailto:ysampath36@gmail.com"
+                  className="text-text-secondary dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary transition-colors"
+                >
                   ysampath36@gmail.com
                 </a>
               </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="text-primary" />
-                <span>Rajahmundry, India</span>
+            </div>
+
+            <div className="flex items-start space-x-4">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-primary to-primary-dark">
+                <MapPin className="w-6 h-6 text-white" />
               </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="text-primary" />
-                <span>Available on request</span>
+              <div>
+                <h3 className="text-lg font-semibold mb-1">Location</h3>
+                <p className="text-text-secondary dark:text-text-secondary-dark">
+                  Rajahmundry, India
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-4">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-primary to-primary-dark">
+                <Phone className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-1">Phone</h3>
+                <p className="text-text-secondary dark:text-text-secondary-dark">
+                  Available on request
+                </p>
+              </div>
+            </div>
+
+            <div className="pt-6">
+              <h3 className="text-lg font-semibold mb-4">Social Links</h3>
+              <div className="flex space-x-4">
+                {socialLinks.map(({ icon: Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-xl bg-gradient-to-br from-primary to-primary-dark text-white hover:scale-110 transform transition-transform duration-200"
+                  >
+                    <Icon className="w-6 h-6" />
+                  </a>
+                ))}
               </div>
             </div>
           </div>
-          <div>
-            <h2 className="text-2xl font-semibold mb-4">Social Links</h2>
-            <div className="flex space-x-4">
-              <a
-                href="https://github.com/just-sampath"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-full hover:bg-primary/10 transition-colors"
+
+          {/* Contact Form */}
+          <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-gray-800">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 rounded-lg bg-gray-900/50 border border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 rounded-lg bg-gray-900/50 border border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={4}
+                  className="w-full px-4 py-2 rounded-lg bg-gray-900/50 border border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                disabled={status === 'sending'}
+                className={`w-full py-3 px-6 rounded-lg bg-gradient-to-r from-primary to-primary-dark text-white font-medium hover:shadow-lg transform hover:scale-[1.02] transition-all duration-200 ${
+                  status === 'sending'
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : ''
+                }`}
               >
-                <Github size={24} className="text-primary" />
-              </a>
-              <a
-                href="https://linkedin.com/in/just-sampath"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-full hover:bg-primary/10 transition-colors"
-              >
-                <Linkedin size={24} className="text-primary" />
-              </a>
-            </div>
+                {status === 'sending' ? 'Sending...' : 'Send Message'}
+              </button>
+              {status === 'success' && (
+                <p className="text-green-500 text-center">Message sent successfully!</p>
+              )}
+              {status === 'error' && (
+                <p className="text-red-500 text-center">Failed to send message. Please try again.</p>
+              )}
+            </form>
           </div>
-        </div>
-        <div className="bg-surface dark:bg-surface-dark rounded-xl p-6 elevation-1">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
-              <input
-                type="text"
-                id="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-primary outline-none transition-shadow"
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
-              <input
-                type="email"
-                id="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-primary outline-none transition-shadow"
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
-              <textarea
-                id="message"
-                rows={4}
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-primary outline-none transition-shadow"
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              disabled={status === 'sending'}
-              className={`w-full font-medium py-2 px-4 rounded-lg transition-colors ${
-                status === 'sending'
-                  ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-primary hover:bg-primary-dark text-white'
-              }`}
-            >
-              {status === 'sending' ? 'Sending...' : 'Send Message'}
-            </button>
-            {status === 'success' && (
-              <p className="text-green-500 text-center">Message sent successfully!</p>
-            )}
-            {status === 'error' && (
-              <p className="text-red-500 text-center">Failed to send message. Please try again.</p>
-            )}
-          </form>
         </div>
       </div>
     </motion.div>

@@ -7,16 +7,18 @@ export function About() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
+      className="py-16"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-        <div>
+        <div className="relative aspect-[4/3] w-full">
           <img
             src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1471"
             alt="Team collaboration"
-            className="rounded-xl shadow-lg"
+            className="rounded-xl shadow-lg object-cover w-full h-full"
           />
+          <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/10 to-primary-dark/10" />
         </div>
-        <div>
+        <div className="flex flex-col justify-center">
           <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
             About Me
           </h1>

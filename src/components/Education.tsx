@@ -44,21 +44,21 @@ const item = {
 
 export function Education() {
   return (
-    <section className="mb-24">
-      <div className="relative mb-12">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary-dark/10 backdrop-blur-xl" />
+    <section className="mb-16">
+      <div className="relative mb-12 rounded-2xl overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary-dark/10 backdrop-blur-xl z-10" />
           <img
             src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=2070"
             alt="Education background"
             className="w-full h-full object-cover opacity-20"
           />
         </div>
-        <div className="relative z-10 text-center py-16 px-4">
+        <div className="relative z-10 text-center py-16">
           <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
             Educational Journey
           </h2>
-          <p className="text-lg text-text-secondary dark:text-text-secondary-dark max-w-2xl mx-auto">
+          <p className="text-lg text-text-secondary dark:text-text-secondary-dark max-w-2xl mx-auto px-4">
             Building a strong foundation in computer science and artificial intelligence
           </p>
         </div>
@@ -69,16 +69,16 @@ export function Education() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="space-y-8"
+        className="space-y-8 px-4"
       >
         {educationData.map((edu, index) => (
           <motion.div
             key={index}
             variants={item}
-            className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 shadow-lg"
+            className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700"
           >
             <div className="absolute -left-3 -top-3">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-primary to-primary-dark">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-primary to-primary-dark shadow-lg">
                 <edu.icon className="w-6 h-6 text-white" />
               </div>
             </div>
@@ -90,32 +90,29 @@ export function Education() {
               <p className="text-lg font-medium text-text-primary dark:text-text-primary-dark mt-1">
                 {edu.institution}
               </p>
-              <div className="flex items-center space-x-2 text-text-secondary dark:text-text-secondary-dark mt-1">
+              <div className="flex flex-wrap items-center gap-2 text-text-secondary dark:text-text-secondary-dark mt-1">
                 <span>{edu.location}</span>
                 <span>•</span>
                 <span>{edu.date}</span>
                 {edu.gpa && (
                   <>
                     <span>•</span>
-                    <div className="flex items-center space-x-1">
+                    <div className="flex items-center gap-1">
                       <Award className="w-4 h-4 text-yellow-400" />
-                      <span className="font-medium text-primary">GPA: {edu.gpa}</span>
+                      <span>GPA: {edu.gpa}</span>
                     </div>
                   </>
                 )}
               </div>
               
-              <div className="mt-4">
-                <h4 className="font-medium text-primary dark:text-primary mb-2">Key Achievements</h4>
-                <ul className="space-y-2">
-                  {edu.achievements.map((achievement, i) => (
-                    <li key={i} className="flex items-start space-x-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span className="text-text-secondary dark:text-text-secondary-dark">{achievement}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="mt-4 space-y-2">
+                {edu.achievements.map((achievement, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="text-primary dark:text-primary mt-1.5">•</span>
+                    <span className="text-text-secondary dark:text-text-secondary-dark">{achievement}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </motion.div>
         ))}

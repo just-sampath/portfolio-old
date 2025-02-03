@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
 import { Github, Mail, Linkedin } from 'lucide-react';
+import { useSpring, animated } from '@react-spring/web';
+import Typewriter from 'typewriter-effect';
 import { IconButton } from './IconButton';
+import { AnimatedBackground } from './AnimatedBackground';
 
 const socialLinks = [
   { 
@@ -24,49 +27,94 @@ const socialLinks = [
 ];
 
 export function Hero() {
+  const titleSpring = useSpring({
+    from: { opacity: 0, transform: 'scale(0.8)' },
+    to: { opacity: 1, transform: 'scale(1)' },
+    config: { tension: 100, friction: 10 },
+  });
+
   return (
-    <section className="relative overflow-hidden">
+    <div className="relative min-h-screen flex items-center justify-center">
+      <AnimatedBackground />
+      
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6">
-          <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
-            Yellapanthula Sai Sampath
-          </span>
-        </h1>
-        <p className="text-lg sm:text-xl md:text-2xl text-text-secondary dark:text-text-secondary-dark mb-6 sm:mb-8 leading-relaxed max-w-2xl">
-          Software Development Engineer at Springworks | Full Stack Developer | AI Enthusiast
-        </p>
-        <div className="flex flex-wrap gap-4">
-          {socialLinks.map(({ icon, href, label, gradient }) => (
-            <IconButton
-              key={label}
-              Icon={icon}
-              href={href}
-              label={label}
-              gradient={gradient}
-            />
-          ))}
+        <div className="text-center">
+          <animated.div style={titleSpring} className="mb-8">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+                <span className="bg-gradient-to-r from-blue-400 via-primary to-purple-500 bg-clip-text text-transparent hover:scale-105 transform transition-transform duration-300">
+                  Yellapanthula
+                </span>
+                <span className="bg-gradient-to-r from-purple-500 via-primary to-blue-400 bg-clip-text text-transparent hover:scale-105 transform transition-transform duration-300">
+                  Sai&nbsp;Sampath
+                </span>
+              </div>
+            </h1>
+          </animated.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="mb-12"
+          >
+            <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 font-light min-h-[3.5rem] flex flex-col items-center justify-center">
+              <div className="flex items-center gap-2">
+                <span>Lead Backend Engineer at</span>
+                <a 
+                  href="https://www.chataid.com/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-primary hover:text-primary-dark transition-colors"
+                >
+                  ChatAid
+                </a>
+              </div>
+              <div className="h-[3.5rem] flex items-center">
+                <Typewriter
+                  options={{
+                    strings: [
+                      'AI Systems Architect',
+                      'Full Stack Developer'
+                    ],
+                    autoStart: true,
+                    loop: true,
+                    delay: 50,
+                    deleteSpeed: 30,
+                  }}
+                />
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.8 }}
+            className="flex flex-wrap justify-center gap-4 sm:gap-6"
+          >
+            {socialLinks.map(({ icon: Icon, href, label, gradient }) => (
+              <motion.div
+                key={label}
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <IconButton
+                  Icon={Icon}
+                  href={href}
+                  label={label}
+                  gradient={gradient}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </motion.div>
-      
-      <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 dark:opacity-20">
-        <div className="absolute inset-0 bg-gradient-to-bl from-primary via-transparent to-transparent" />
-        <svg
-          viewBox="0 0 200 200"
-          className="w-full h-full"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill="currentColor"
-            d="M45,-78.1C58.3,-71.2,69.1,-58.4,77.8,-43.7C86.5,-29,93.2,-12.5,89.8,2.1C86.4,16.7,73,29.3,61.5,41.6C50,53.9,40.4,65.9,27.5,73.3C14.6,80.7,-1.6,83.5,-17.4,80.6C-33.2,77.7,-48.6,69.1,-60.2,57.1C-71.8,45,-79.5,29.5,-83.2,12.7C-86.9,-4.1,-86.5,-22.2,-78.9,-36.1C-71.3,-50,-56.5,-59.6,-41.8,-65.9C-27.1,-72.2,-12.5,-75.2,2.4,-79.1C17.3,-83,34.6,-87.8,45,-78.1Z"
-            transform="translate(100 100)"
-          />
-        </svg>
-      </div>
-    </section>
+    </div>
   );
 }

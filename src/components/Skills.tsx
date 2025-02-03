@@ -21,7 +21,7 @@ const skillCategories = {
   ],
   'Tools & Infrastructure': [
     { name: 'Docker', icon: <Container />, rating: 3.5, color: 'from-cyan-500 to-cyan-700' },
-    { name: 'System Design', icon: <Cpu />, rating: 4, color: 'from-rose-500 to-rose-700' },
+    { name: 'System Design', icon: <Cpu />, rating: 3, color: 'from-rose-500 to-rose-700' },
   ]
 };
 

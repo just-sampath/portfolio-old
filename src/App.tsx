@@ -12,10 +12,11 @@ export function App() {
 
   return (
     <BrowserRouter>
-      <div className={`min-h-screen transition-colors duration-200 ${isDark ? 'dark bg-gray-900 text-text-primary-dark' : 'bg-gray-50 text-text-primary'
-        }`}>
+      <div className={`min-h-screen w-full overflow-x-hidden transition-colors duration-200 ${
+        isDark ? 'dark bg-gray-900 text-text-primary-dark' : 'bg-gray-50 text-text-primary'
+      }`}>
         <Navbar isDark={isDark} toggleTheme={toggleTheme} />
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/portfolio-old" element={<Home />} />
