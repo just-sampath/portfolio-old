@@ -44,7 +44,7 @@ export function Hero() {
         className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="text-center">
-          <animated.div style={titleSpring} className="mb-8">
+          <animated.div style={titleSpring} className="mb-3">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight">
               <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
                 <span className="bg-gradient-to-r from-blue-400 via-primary to-purple-500 bg-clip-text text-transparent hover:scale-105 transform transition-transform duration-300">
@@ -60,22 +60,23 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="mb-12"
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="mb-4"
           >
-            <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 font-light min-h-[3.5rem] flex flex-col items-center justify-center">
-              <div className="flex items-center gap-2">
-                <span>Lead Backend Engineer at</span>
+            <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light space-y-1">
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-gray-300">Lead Backend Engineer at</span>
                 <a 
                   href="https://www.chataid.com/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-primary hover:text-primary-dark transition-colors"
+                  className="text-primary hover:text-primary-dark transition-colors relative group"
                 >
                   ChatAid
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
                 </a>
               </div>
-              <div className="h-[3.5rem] flex items-center">
+              <div className="h-8 flex items-center justify-center text-gray-300">
                 <Typewriter
                   options={{
                     strings: [
@@ -93,9 +94,16 @@ export function Hero() {
           </motion.div>
 
           <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className="w-16 h-0.5 bg-gradient-to-r from-primary/30 to-primary-dark/30 rounded-full mx-auto mb-4"
+          />
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.8 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
             className="flex flex-wrap justify-center gap-4 sm:gap-6"
           >
             {socialLinks.map(({ icon: Icon, href, label, gradient }) => (
