@@ -7,4 +7,9 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  server: {
+    host: true,
+    allowedHosts: ['work-1-xrpciozwsbrtbgdh.prod-runtime.all-hands.dev', 'work-2-xrpciozwsbrtbgdh.prod-runtime.all-hands.dev'],
+    cors: true,
+  },
 });
