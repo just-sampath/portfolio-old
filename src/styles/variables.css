@@ -1,46 +1,64 @@
 /* Design tokens and CSS variables */
 :root {
-  /* Colors */
-  --color-primary-50: #e3f2fd;
-  --color-primary-100: #bbdefb;
-  --color-primary-200: #90caf9;
-  --color-primary-300: #64b5f6;
-  --color-primary-400: #42a5f5;
-  --color-primary-500: #2196f3;
-  --color-primary-600: #1e88e5;
-  --color-primary-700: #1976d2;
-  --color-primary-800: #1565c0;
-  --color-primary-900: #0d47a1;
+  /* Enhanced Color Palette */
 
-  /* Neutral colors */
-  --color-gray-50: #fafafa;
-  --color-gray-100: #f5f5f5;
-  --color-gray-200: #eeeeee;
-  --color-gray-300: #e0e0e0;
-  --color-gray-400: #bdbdbd;
-  --color-gray-500: #9e9e9e;
-  --color-gray-600: #757575;
-  --color-gray-700: #616161;
-  --color-gray-800: #424242;
-  --color-gray-900: #212121;
+  /* Primary Colors */
+  --color-primary-50: #f0f9ff;
+  --color-primary-100: #e0f2fe;
+  --color-primary-200: #bae6fd;
+  --color-primary-300: #7dd3fc;
+  --color-primary-400: #38bdf8;
+  --color-primary-500: #0ea5e9; /* Main Primary Color */
+  --color-primary-600: #0284c7;
+  --color-primary-700: #0369a1;
+  --color-primary-800: #075985;
+  --color-primary-900: #0c4a6e;
+
+  /* Secondary Colors (Accent) */
+  --color-secondary-50: #fefce8;
+  --color-secondary-100: #fef9c3;
+  --color-secondary-200: #fef08a;
+  --color-secondary-300: #fde047;
+  --color-secondary-400: #facc15;
+  --color-secondary-500: #eab308; /* Main Secondary/Accent Color */
+  --color-secondary-600: #ca8a04;
+  --color-secondary-700: #a16207;
+  --color-secondary-800: #854d0e;
+  --color-secondary-900: #713f12;
+
+  /* Neutral Colors */
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b; /* Dark Surface / Dark Text */
+  --color-neutral-900: #0f172a; /* Very Dark Background */
 
   /* Semantic colors */
-  --color-success: #4caf50;
-  --color-warning: #ff9800;
-  --color-error: #f44336;
-  --color-info: #2196f3;
+  --color-success: #22c55e; /* Green 500 */
+  --color-warning: #f97316; /* Orange 500 */
+  --color-error: #ef4444;   /* Red 500 */
+  --color-info: var(--color-primary-500); /* Using primary for info */
 
   /* Text colors */
-  --text-primary: rgba(0, 0, 0, 0.87);
-  --text-secondary: rgba(0, 0, 0, 0.6);
-  --text-disabled: rgba(0, 0, 0, 0.38);
-  --text-primary-dark: rgba(255, 255, 255, 0.87);
-  --text-secondary-dark: rgba(255, 255, 255, 0.6);
-  --text-disabled-dark: rgba(255, 255, 255, 0.38);
+  --text-light-primary: var(--color-neutral-800); /* For light backgrounds */
+  --text-light-secondary: var(--color-neutral-600);
+  --text-light-disabled: var(--color-neutral-400);
+
+  --text-dark-primary: var(--color-neutral-100);  /* For dark backgrounds */
+  --text-dark-secondary: var(--color-neutral-300);
+  --text-dark-disabled: var(--color-neutral-500);
 
   /* Surface colors */
-  --surface-light: #ffffff;
-  --surface-dark: #121212;
+  --surface-light: #ffffff; /* Pure white for light mode main background */
+  --surface-light-secondary: var(--color-neutral-50); /* Slightly off-white for cards/sections in light mode */
+
+  --surface-dark: var(--color-neutral-900); /* Very dark for dark mode main background */
+  --surface-dark-secondary: var(--color-neutral-800); /* Slightly lighter dark for cards/sections in dark mode */
 
   /* Spacing */
   --spacing-1: 0.25rem;  /* 4px */
