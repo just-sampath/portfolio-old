@@ -10,16 +10,30 @@
 /* Import component styles */
 @import './styles/components/timeline.css';
 
+/* Updated global variables to use new palette */
+/* These are fallback/global settings; Tailwind classes should be preferred. */
 :root {
-  --primary: #2196f3;
-  --primary-dark: #1976d2;
-  --surface: #ffffff;
-  --surface-dark: #121212;
-  --text-primary: rgba(0, 0, 0, 0.87);
-  --text-secondary: rgba(0, 0, 0, 0.6);
-  --text-primary-dark: rgba(255, 255, 255, 0.87);
-  --text-secondary-dark: rgba(255, 255, 255, 0.6);
+  --primary: var(--color-primary-500);
+  --primary-dark: var(--color-primary-700); /* For dark theme primary if needed */
+
+  /* Light theme defaults */
+  --surface: var(--surface-light);
+  --text-primary: var(--text-light-primary);
+  --text-secondary: var(--text-light-secondary);
+
+  /* Dark theme defaults (activated by 'dark' class on html/body) */
+  --surface-dark: var(--surface-dark);
+  --text-primary-dark: var(--text-dark-primary);
+  --text-secondary-dark: var(--text-dark-secondary);
 }
+
+/* Apply dark theme variables when .dark class is present */
+.dark:root {
+  --surface: var(--surface-dark);
+  --text-primary: var(--text-dark-primary);
+  --text-secondary: var(--text-dark-secondary);
+}
+
 
 html {
   scroll-behavior: smooth;
@@ -27,7 +41,7 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif; /* Updated body font */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
@@ -40,36 +54,50 @@ body {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
-  padding-right: 1rem;
-  padding-left: 1rem;
+  padding-right: var(--spacing-4); /* 1rem */
+  padding-left: var(--spacing-4); /* 1rem */
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) { /* sm */
   .container {
     max-width: 640px;
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
+    padding-right: var(--spacing-6); /* 1.5rem */
+    padding-left: var(--spacing-6); /* 1.5rem */
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) { /* md */
   .container {
     max-width: 768px;
+    /* Padding remains var(--spacing-6) from sm breakpoint */
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1024px) { /* lg */
   .container {
     max-width: 1024px;
-    padding-right: 2rem;
-    padding-left: 2rem;
+    padding-right: var(--spacing-8); /* 2rem */
+    padding-left: var(--spacing-8); /* 2rem */
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1280px) { /* xl */
   .container {
     max-width: 1280px;
+    /* Padding remains var(--spacing-8) from lg breakpoint */
   }
+}
+
+/* General body padding for overall spacing from screen edges */
+body {
+  padding-top: var(--spacing-4);
+  padding-bottom: var(--spacing-4);
+}
+
+/* Section specific vertical spacing */
+section {
+  padding-top: var(--spacing-12); /* 3rem */
+  padding-bottom: var(--spacing-12); /* 3rem */
 }
 
 /* Responsive images */
@@ -95,8 +123,40 @@ img {
 }
 
 .card-hover:hover {
+  transform: translateY(-4px); /* Increased translateY for a more noticeable lift */
+  box-shadow: var(--shadow-lg); /* Using predefined shadow from variables.css */
+}
+
+/* Generic button hover effect */
+button, .button-like { /* Add .button-like to any element styled as a button */
+  transition: background-color var(--transition-fast) var(--transition-timing),
+              transform var(--transition-fast) var(--transition-timing),
+              box-shadow var(--transition-fast) var(--transition-timing);
+}
+
+button:hover, .button-like:hover {
   transform: translateY(-2px);
-  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
-    0px 8px 10px 1px rgba(0, 0, 0, 0.14),
-    0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-md);
+}
+
+/* Link hover effect */
+a {
+  transition: color var(--transition-fast) var(--transition-timing),
+              opacity var(--transition-fast) var(--transition-timing);
+}
+
+a:hover {
+  opacity: 0.8; /* Slight fade on hover for links */
+}
+
+/* Fade-in animation for sections - to be applied with JavaScript or Intersection Observer */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--transition-timing), transform 0.6s var(--transition-timing);
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }

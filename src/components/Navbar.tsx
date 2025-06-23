@@ -35,21 +35,21 @@ export function Navbar({ isDark, toggleTheme }: NavbarProps) {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-sticky transition-all duration-300 ${
         isScrolled || isMenuOpen
-          ? 'bg-white dark:bg-gray-900 shadow-lg'
+          ? 'bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-md shadow-lg' // Use new surface colors with opacity and blur
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> {/* Uses container paddings internally */}
         <div className="flex justify-between h-20">
           {/* Logo/Name */}
           <motion.div 
             className="flex items-center"
             whileHover={{ scale: 1.05 }}
           >
-            <Link to="/" className="text-xl font-bold">
-              <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <Link to="/" className="text-2xl font-serif font-bold"> {/* Updated font */}
+              <span className="bg-gradient-to-r from-primary-400 to-secondary-500 bg-clip-text text-transparent dark:from-primary-300 dark:to-secondary-400"> {/* Updated gradient */}
                 Sampath
               </span>
             </Link>
@@ -65,17 +65,17 @@ export function Navbar({ isDark, toggleTheme }: NavbarProps) {
               >
                 <Link
                   to={item.path}
-                  className={`relative text-sm font-medium transition-colors duration-200 px-4 py-2 rounded-lg ${
+                  className={`relative text-base font-medium transition-colors duration-200 px-4 py-2 rounded-lg ${ // Increased font size
                     isActive(item.path)
-                      ? 'text-white bg-gradient-to-r from-blue-400 to-purple-500'
-                      : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                      ? 'text-white' // Active text color is white, background is the motion.div
+                      : 'text-text-light-secondary dark:text-text-dark-secondary hover:text-text-light-primary dark:hover:text-text-dark-primary'
                   }`}
                 >
                   {item.label}
                   {isActive(item.path) && (
                     <motion.div
                       layoutId="navbar-active"
-                      className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-lg -z-10"
+                      className="absolute inset-0 bg-gradient-to-r from-primary-500 to-primary-600 rounded-lg -z-10" // Updated gradient
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}
@@ -88,10 +88,10 @@ export function Navbar({ isDark, toggleTheme }: NavbarProps) {
               whileHover={{ scale: 1.1, rotate: 180 }}
               whileTap={{ scale: 0.9 }}
               onClick={toggleTheme}
-              className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+              className="p-3 rounded-full bg-surface-light-secondary dark:bg-surface-dark-secondary text-text-light-primary dark:text-text-dark-primary hover:text-primary-500 dark:hover:text-primary-300 transition-colors" // Updated styles
               aria-label="Toggle theme"
             >
-              {isDark ? <Sun size={20} /> : <Moon size={20} />}
+              {isDark ? <Sun size={22} /> : <Moon size={22} />} {/* Slightly larger icon */}
             </motion.button>
           </div>
 
@@ -100,10 +100,10 @@ export function Navbar({ isDark, toggleTheme }: NavbarProps) {
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+              className="p-2 rounded-lg text-text-light-primary dark:text-text-dark-primary hover:text-primary-500 dark:hover:text-primary-300" // Updated colors
               aria-label="Toggle menu"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />} {/* Slightly larger icon */}
             </motion.button>
           </div>
         </div>
@@ -116,7 +116,7 @@ export function Navbar({ isDark, toggleTheme }: NavbarProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-20 left-0 right-0 bg-white dark:bg-gray-900 shadow-xl"
+              className="absolute top-20 left-0 right-0 bg-surface-light dark:bg-surface-dark shadow-xl md:hidden" // Added md:hidden, updated colors
             >
               <div className="px-4 py-6 space-y-4">
                 {navItems.map((item) => (
@@ -132,8 +132,8 @@ export function Navbar({ isDark, toggleTheme }: NavbarProps) {
                       onClick={() => setIsMenuOpen(false)}
                       className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200 ${
                         isActive(item.path)
-                          ? 'bg-gradient-to-r from-blue-400 to-purple-500 text-white'
-                          : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                          ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white' // Updated gradient
+                          : 'text-text-light-secondary dark:text-text-dark-secondary hover:bg-surface-light-secondary dark:hover:bg-surface-dark-secondary hover:text-text-light-primary dark:hover:text-text-dark-primary'
                       }`}
                     >
                       {item.label}
@@ -147,17 +147,17 @@ export function Navbar({ isDark, toggleTheme }: NavbarProps) {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.2, delay: 0.1 }}
-                  className="px-4"
+                  className="px-4 pt-2" // Added padding top
                 >
                   <button
                     onClick={() => {
                       toggleTheme();
                       setIsMenuOpen(false);
                     }}
-                    className="flex items-center w-full px-4 py-3 rounded-lg text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    className="flex items-center w-full px-4 py-3 rounded-lg text-base font-medium text-text-light-secondary dark:text-text-dark-secondary hover:bg-surface-light-secondary dark:hover:bg-surface-dark-secondary hover:text-text-light-primary dark:hover:text-text-dark-primary transition-colors" // Updated colors
                   >
                     <span className="mr-3">
-                      {isDark ? <Sun size={20} /> : <Moon size={20} />}
+                      {isDark ? <Sun size={22} /> : <Moon size={22} />} {/* Slightly larger icon */}
                     </span>
                     {isDark ? 'Light Mode' : 'Dark Mode'}
                   </button>
