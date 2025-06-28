@@ -65,7 +65,7 @@ export function Hero() {
           >
             <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light space-y-1">
               <div className="flex items-center justify-center gap-2">
-                <span className="text-gray-300">Lead Backend Engineer at</span>
+                <span className="text-text-light-secondary dark:text-text-dark-secondary">Lead Backend Engineer at</span>
                 <a 
                   href="https://www.chataid.com/" 
                   target="_blank" 
@@ -76,7 +76,7 @@ export function Hero() {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
                 </a>
               </div>
-              <div className="h-8 flex items-center justify-center text-gray-300">
+              <div className="h-8 flex items-center justify-center text-text-light-secondary dark:text-text-dark-secondary">
                 <Typewriter
                   options={{
                     strings: [

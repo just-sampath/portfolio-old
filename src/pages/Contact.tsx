@@ -63,7 +63,7 @@ export function Contact() {
             Get in Touch
           </motion.h1>
           <motion.p 
-            className="text-lg text-text-secondary dark:text-text-secondary-dark max-w-2xl mx-auto"
+            className="text-lg text-text-light-secondary dark:text-text-dark-secondary max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -87,7 +87,7 @@ export function Contact() {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <h3 className="text-xl font-semibold mb-2 text-primary">Location</h3>
-              <p className="text-text-secondary dark:text-text-secondary-dark">
+              <p className="text-text-light-secondary dark:text-text-dark-secondary">
                 Hyderabad, India
               </p>
             </motion.div>
@@ -100,7 +100,7 @@ export function Contact() {
               <h3 className="text-xl font-semibold mb-2 text-primary">Email</h3>
               <a 
                 href="mailto:ysampath36@gmail.com" 
-                className="text-text-secondary dark:text-text-secondary-dark hover:text-primary transition-colors"
+                className="text-text-light-secondary dark:text-text-dark-secondary hover:text-primary transition-colors"
               >
                 ysampath36@gmail.com
               </a>
@@ -122,13 +122,13 @@ export function Contact() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 1 }}
             >
-              <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
+              <label htmlFor="name" className="block text-sm font-medium mb-2 text-text-light-primary dark:text-text-dark-primary">Name</label>
               <input
                 type="text"
                 id="name"
                 name="name"
                 required
-                className="w-full px-4 py-2 rounded-lg bg-background dark:bg-background-dark border border-border dark:border-border-dark focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary text-text-light-primary dark:text-text-dark-primary"
               />
             </motion.div>
 
@@ -138,13 +138,13 @@ export function Contact() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 1.2 }}
             >
-              <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
+              <label htmlFor="email" className="block text-sm font-medium mb-2 text-text-light-primary dark:text-text-dark-primary">Email</label>
               <input
                 type="email"
                 id="email"
                 name="email"
                 required
-                className="w-full px-4 py-2 rounded-lg bg-background dark:bg-background-dark border border-border dark:border-border-dark focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary text-text-light-primary dark:text-text-dark-primary"
               />
             </motion.div>
 
@@ -154,13 +154,13 @@ export function Contact() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 1.4 }}
             >
-              <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
+              <label htmlFor="message" className="block text-sm font-medium mb-2 text-text-light-primary dark:text-text-dark-primary">Message</label>
               <textarea
                 id="message"
                 name="message"
                 required
                 rows={4}
-                className="w-full px-4 py-2 rounded-lg bg-background dark:bg-background-dark border border-border dark:border-border-dark focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary text-text-light-primary dark:text-text-dark-primary"
               />
             </motion.div>
 

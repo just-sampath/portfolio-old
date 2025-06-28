@@ -80,7 +80,7 @@ export function About() {
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <motion.p 
-              className="text-lg text-text-secondary dark:text-text-secondary-dark"
+              className="text-lg text-text-light-secondary dark:text-text-dark-secondary"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -91,7 +91,7 @@ export function About() {
               pursue Computer Science with a focus on AI and Machine Learning.
             </motion.p>
             <motion.p 
-              className="text-lg text-text-secondary dark:text-text-secondary-dark"
+              className="text-lg text-text-light-secondary dark:text-text-dark-secondary"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

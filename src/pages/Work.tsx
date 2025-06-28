@@ -56,7 +56,7 @@ export function Work() {
                 Professional Journey
               </motion.h1>
               <motion.p 
-                className="text-lg sm:text-xl text-text-secondary dark:text-text-secondary-dark"
+                className="text-lg sm:text-xl text-text-light-secondary dark:text-text-dark-secondary"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

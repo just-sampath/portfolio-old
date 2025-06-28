@@ -58,7 +58,7 @@ export function Education() {
           <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
             Educational Journey
           </h2>
-          <p className="text-lg text-text-secondary dark:text-text-secondary-dark max-w-2xl mx-auto px-4">
+          <p className="text-lg text-text-light-secondary dark:text-text-dark-secondary max-w-2xl mx-auto px-4">
             Building a strong foundation in computer science and artificial intelligence
           </p>
         </div>
@@ -87,10 +87,10 @@ export function Education() {
               <h3 className="text-xl font-semibold text-primary dark:text-primary">
                 {edu.degree}
               </h3>
-              <p className="text-lg font-medium text-text-primary dark:text-text-primary-dark mt-1">
+              <p className="text-lg font-medium text-text-light-primary dark:text-text-dark-primary mt-1">
                 {edu.institution}
               </p>
-              <div className="flex flex-wrap items-center gap-2 text-text-secondary dark:text-text-secondary-dark mt-1">
+              <div className="flex flex-wrap items-center gap-2 text-text-light-secondary dark:text-text-dark-secondary mt-1">
                 <span>{edu.location}</span>
                 <span>•</span>
                 <span>{edu.date}</span>
@@ -109,7 +109,7 @@ export function Education() {
                 {edu.achievements.map((achievement, i) => (
                   <li key={i} className="flex items-start gap-2">
                     <span className="text-primary dark:text-primary mt-1.5">•</span>
-                    <span className="text-text-secondary dark:text-text-secondary-dark">{achievement}</span>
+                    <span className="text-text-light-secondary dark:text-text-dark-secondary">{achievement}</span>
                   </li>
                 ))}
               </ul>

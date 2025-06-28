@@ -4,7 +4,7 @@ import { Code2, Database, Terminal, Globe, Cpu, Bot, Brain, Container, Star, Sta
 interface Skill {
   name: string;
   icon: React.ReactNode;
-  rating: number; // Out of 5
+  rating: number;
   color: string;
 }
 
@@ -69,7 +69,7 @@ function SkillCard({ skill }: { skill: Skill }) {
               {skill.icon}
             </div>
           </div>
-          <span className="font-medium">{skill.name}</span>
+          <span className="font-medium text-text-light-primary dark:text-text-dark-primary">{skill.name}</span>
         </div>
         <div className="pl-10 sm:pl-0">
           <SkillRating rating={skill.rating} color={skill.color} />
@@ -95,7 +95,7 @@ export function Skills() {
           <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
             Technical Expertise
           </h2>
-          <p className="text-lg text-text-secondary dark:text-text-secondary-dark max-w-2xl mx-auto">
+          <p className="text-lg text-text-light-secondary dark:text-text-dark-secondary max-w-2xl mx-auto">
             Proficient in modern technologies with a focus on AI, backend development, and cloud infrastructure
           </p>
         </div>

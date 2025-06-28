@@ -54,7 +54,7 @@ export function Projects() {
               <h3 className="text-xl font-semibold mb-2 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
                 {project.title}
               </h3>
-              <p className="text-text-secondary dark:text-text-secondary-dark mb-4">
+              <p className="text-text-light-secondary dark:text-text-dark-secondary mb-4">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-2 mb-4">

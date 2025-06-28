@@ -95,7 +95,7 @@ export function Experience() {
                 opacity: 0.5
               }}
               date={experience.date}
-              dateClassName="text-text-secondary dark:text-text-secondary-dark font-medium md:text-lg"
+              dateClassName="text-text-light-secondary dark:text-text-dark-secondary font-medium md:text-lg"
               iconStyle={{ 
                 background: 'transparent',
                 boxShadow: 'none'
@@ -124,7 +124,7 @@ export function Experience() {
                       {experience.title}
                     </motion.h3>
                     <motion.h4 
-                      className="text-xl font-semibold mb-4 text-text-primary dark:text-text-primary-dark"
+                      className="text-xl font-semibold mb-4 text-text-light-primary dark:text-text-dark-primary"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.3 }}
@@ -153,7 +153,7 @@ export function Experience() {
                           className="flex items-start gap-3 group"
                         >
                           <span className="text-primary mt-1.5 text-lg opacity-75 group-hover:opacity-100 transition-opacity">•</span>
-                          <span className="text-text-secondary dark:text-text-secondary-dark group-hover:text-primary/90 transition-colors duration-300">
+                          <span className="text-text-light-secondary dark:text-text-dark-secondary group-hover:text-primary/90 transition-colors duration-300">
                             {point}
                           </span>
                         </motion.li>
@@ -166,7 +166,6 @@ export function Experience() {
           ))}
         </VerticalTimeline>
 
-        {/* Custom styles for the timeline line */}
         <style dangerouslySetInnerHTML={{
           __html: `
             .custom-timeline .vertical-timeline::before {

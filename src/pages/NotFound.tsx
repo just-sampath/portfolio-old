@@ -12,7 +12,7 @@ export function NotFound() {
       <h1 className="text-8xl font-bold mb-4 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
         404
       </h1>
-      <p className="text-2xl text-text-secondary dark:text-text-secondary-dark mb-8">
+      <p className="text-2xl text-text-light-secondary dark:text-text-dark-secondary mb-8">
         Oops! Page not found
       </p>
       <Link
