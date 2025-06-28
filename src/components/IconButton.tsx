@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Tilt } from 'react-tilt';
-import { DivideIcon as LucideIcon } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 
 interface IconButtonProps {
   Icon: LucideIcon;
@@ -40,7 +40,7 @@ export function IconButton({ Icon, href, label, gradient = 'from-primary-500 to-
         {/* Glow effect */}
         <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-20 blur-xl transition-all duration-300`} />
         
-        <Icon className="relative z-10 w-7 h-7 text-text-light-primary dark:text-text-dark-primary group-hover:text-white transition-colors duration-300" />
+        <Icon className="relative z-10 w-7 h-7 text-gray-700 dark:text-gray-300 group-hover:text-white transition-colors duration-300" />
 
         {/* Enhanced tooltip */}
         <div
