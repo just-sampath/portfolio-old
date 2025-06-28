@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { GraduationCap, Award, BookOpen } from 'lucide-react';
+import { GraduationCap, Award, BookOpen, MapPin, Calendar } from 'lucide-react';
 
 const educationData = [
   {
@@ -11,9 +11,11 @@ const educationData = [
     achievements: [
       'Specialized in Artificial Intelligence and Machine Learning',
       'Led technical workshops on AI/ML fundamentals',
-      'Published research paper on predictive analytics'
+      'Published research paper on predictive analytics',
+      'Active member of Computer Science Society'
     ],
-    icon: GraduationCap
+    icon: GraduationCap,
+    color: 'from-blue-500 to-purple-600'
   },
   {
     degree: 'Intermediate (12th), MPC',
@@ -23,9 +25,11 @@ const educationData = [
     achievements: [
       'Achieved state rank in Mathematics',
       'Active member of Science Club',
-      'Participated in district-level science exhibitions'
+      'Participated in district-level science exhibitions',
+      'Excellence in Physics and Chemistry'
     ],
-    icon: BookOpen
+    icon: BookOpen,
+    color: 'from-green-500 to-teal-600'
   }
 ];
 
@@ -44,24 +48,28 @@ const item = {
 
 export function Education() {
   return (
-    <section className="mb-16">
-      <div className="relative mb-12 rounded-2xl overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary-dark/10 backdrop-blur-xl z-10" />
-          <img
-            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=2070"
-            alt="Education background"
-            className="w-full h-full object-cover opacity-20"
-          />
-        </div>
-        <div className="relative z-10 text-center py-16">
-          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
+    <section className="mb-24 relative">
+      {/* Background decorations */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 right-1/4 w-72 h-72 bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-10 left-1/4 w-96 h-96 bg-gradient-to-br from-secondary/5 to-transparent rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative mb-16 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
             Educational Journey
           </h2>
-          <p className="text-lg text-text-light-secondary dark:text-text-dark-secondary max-w-2xl mx-auto px-4">
-            Building a strong foundation in computer science and artificial intelligence
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mb-6" />
+          <p className="text-lg text-text-light-secondary dark:text-text-dark-secondary max-w-3xl mx-auto leading-relaxed">
+            Building a strong foundation in computer science and artificial intelligence through dedicated learning and practical application
           </p>
-        </div>
+        </motion.div>
       </div>
 
       <motion.div
@@ -69,50 +77,80 @@ export function Education() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="space-y-8 px-4"
+        className="space-y-8 px-4 relative z-10"
       >
         {educationData.map((edu, index) => (
           <motion.div
             key={index}
             variants={item}
-            className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700"
+            className="group relative"
           >
-            <div className="absolute -left-3 -top-3">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-primary to-primary-dark shadow-lg">
-                <edu.icon className="w-6 h-6 text-white" />
-              </div>
-            </div>
-            
-            <div className="ml-8">
-              <h3 className="text-xl font-semibold text-primary dark:text-primary">
-                {edu.degree}
-              </h3>
-              <p className="text-lg font-medium text-text-light-primary dark:text-text-dark-primary mt-1">
-                {edu.institution}
-              </p>
-              <div className="flex flex-wrap items-center gap-2 text-text-light-secondary dark:text-text-dark-secondary mt-1">
-                <span>{edu.location}</span>
-                <span>•</span>
-                <span>{edu.date}</span>
-                {edu.gpa && (
-                  <>
-                    <span>•</span>
-                    <div className="flex items-center gap-1">
-                      <Award className="w-4 h-4 text-yellow-400" />
-                      <span>GPA: {edu.gpa}</span>
-                    </div>
-                  </>
-                )}
+            <div className="relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-gray-200/20 dark:border-gray-700/20 hover:shadow-2xl hover:border-primary/30 transition-all duration-500 transform hover:-translate-y-1 overflow-hidden">
+              
+              {/* Gradient overlay */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${edu.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+              
+              {/* Icon */}
+              <div className="absolute -left-4 -top-4">
+                <div className={`p-4 rounded-2xl bg-gradient-to-br ${edu.color} shadow-xl`}>
+                  <edu.icon className="w-8 h-8 text-white" />
+                </div>
               </div>
               
-              <ul className="mt-4 space-y-2">
-                {edu.achievements.map((achievement, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <span className="text-primary dark:text-primary mt-1.5">•</span>
-                    <span className="text-text-light-secondary dark:text-text-dark-secondary">{achievement}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="ml-12 relative z-10">
+                {/* Header */}
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold text-primary dark:text-primary mb-2">
+                    {edu.degree}
+                  </h3>
+                  <p className="text-xl font-semibold text-text-light-primary dark:text-text-dark-primary mb-3">
+                    {edu.institution}
+                  </p>
+                  
+                  {/* Meta information */}
+                  <div className="flex flex-wrap items-center gap-4 text-text-light-secondary dark:text-text-dark-secondary">
+                    <div className="flex items-center gap-1">
+                      <MapPin className="w-4 h-4" />
+                      <span>{edu.location}</span>
+                    </div>
+                    <span>•</span>
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>{edu.date}</span>
+                    </div>
+                    {edu.gpa && (
+                      <>
+                        <span>•</span>
+                        <div className="flex items-center gap-1">
+                          <Award className="w-4 h-4 text-yellow-500" />
+                          <span className="font-medium">GPA: {edu.gpa}</span>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
+                
+                {/* Achievements */}
+                <div>
+                  <h4 className="text-lg font-semibold text-text-light-primary dark:text-text-dark-primary mb-4">Key Achievements</h4>
+                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {edu.achievements.map((achievement, i) => (
+                      <motion.li 
+                        key={i} 
+                        className="flex items-start gap-3 group/achievement"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: i * 0.1 }}
+                      >
+                        <span className="text-primary dark:text-primary mt-1.5 text-sm opacity-75 group-hover/achievement:opacity-100 transition-opacity">✓</span>
+                        <span className="text-text-light-secondary dark:text-text-dark-secondary group-hover/achievement:text-text-light-primary dark:group-hover/achievement:text-text-dark-primary transition-colors duration-300 leading-relaxed">
+                          {achievement}
+                        </span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
           </motion.div>
         ))}
