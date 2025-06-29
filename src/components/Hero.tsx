@@ -75,23 +75,6 @@ export function Hero() {
         className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="text-center">
-          {/* Profile image with glow effect */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-8 flex justify-center"
-          >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-lg opacity-30 animate-pulse"></div>
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150"
-                alt="Profile"
-                className="relative w-32 h-32 rounded-full border-4 border-white/20 shadow-2xl object-cover"
-              />
-            </div>
-          </motion.div>
-
           <animated.div style={titleSpring} className="mb-6">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight">
               <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
@@ -121,12 +104,12 @@ export function Hero() {
           >
             <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light space-y-2">
               <div className="flex items-center justify-center gap-2 flex-wrap">
-                <span className="text-text-light-secondary dark:text-text-dark-secondary">Lead Backend Engineer at</span>
+                <span className="text-gray-600 dark:text-gray-300">Lead Backend Engineer at</span>
                 <motion.a 
                   href="https://www.chataid.com/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-primary hover:text-primary-dark transition-colors relative group"
+                  className="text-primary hover:text-primary-600 transition-colors relative group"
                   whileHover={{ scale: 1.05 }}
                 >
                   ChatAid
@@ -135,7 +118,7 @@ export function Hero() {
               </div>
               <div className="h-10 flex items-center justify-center">
                 <div className="bg-gradient-to-r from-primary/20 to-secondary/20 backdrop-blur-sm rounded-lg px-4 py-2">
-                  <span className="text-text-light-secondary dark:text-text-dark-secondary">
+                  <span className="text-gray-600 dark:text-gray-300">
                     <Typewriter
                       options={{
                         strings: [
@@ -206,7 +189,7 @@ export function Hero() {
             transition={{ delay: 1.2, duration: 0.8 }}
             className="flex flex-col items-center"
           >
-            <span className="text-sm text-text-light-secondary dark:text-text-dark-secondary mb-2">Scroll to explore</span>
+            <span className="text-sm text-gray-500 dark:text-gray-400 mb-2">Scroll to explore</span>
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
