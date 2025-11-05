@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion';
-import { Github, Mail, Linkedin, ArrowDown, Sparkles, Code2, Rocket } from 'lucide-react';
+import { Github, Mail, Linkedin, ArrowDown, Sparkles, Code2 } from 'lucide-react';
 import { useSpring, animated } from '@react-spring/web';
 import Typewriter from 'typewriter-effect';
 import { IconButton } from './IconButton';
 import { AnimatedBackground } from './AnimatedBackground';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 const socialLinks = [

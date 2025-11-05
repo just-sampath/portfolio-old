@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { GradientCard } from './GradientCard';
-import { Github, ExternalLink, Star, GitFork, ArrowUpRight, Calendar } from 'lucide-react';
+import { Github, Star, GitFork, ArrowUpRight } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
