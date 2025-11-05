@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { Code2, Database, Terminal, Globe, Cpu, Bot, Brain, Container, Star, StarHalf, Zap } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 interface Skill {
   name: string;
@@ -109,16 +111,16 @@ function SkillCard({ skill }: { skill: Skill }) {
   return (
     <motion.div
       whileHover={{ scale: 1.03, y: -5 }}
-      className="group relative mb-6 p-6 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300"
+      className="group relative mb-4"
     >
-      {/* Gradient overlay on hover */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-5 rounded-xl transition-opacity duration-300`} />
-      
-      <div className="relative z-10">
-        <div className="flex items-start justify-between mb-3">
-          <div className="flex items-center space-x-3">
-            <motion.div 
-              className={`p-3 rounded-lg bg-gradient-to-br ${skill.color} shadow-lg`}
+      <Card className="relative overflow-hidden border-2 hover:border-primary/30 transition-all duration-300 hover:shadow-lg backdrop-blur-sm bg-card/95">
+        {/* Gradient overlay on hover */}
+        <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+
+        <CardContent className="p-5 relative z-10">
+          <div className="flex items-start gap-4 mb-4">
+            <motion.div
+              className={`p-3 rounded-xl bg-gradient-to-br ${skill.color} shadow-lg shrink-0`}
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.6 }}
             >
@@ -126,20 +128,20 @@ function SkillCard({ skill }: { skill: Skill }) {
                 {skill.icon}
               </div>
             </motion.div>
-            <div>
-              <h4 className="font-semibold text-lg text-text-light-primary dark:text-text-dark-primary">{skill.name}</h4>
-              <p className="text-sm text-text-light-secondary dark:text-text-dark-secondary">{skill.description}</p>
+            <div className="flex-1 min-w-0">
+              <h4 className="font-semibold text-lg mb-1 truncate">{skill.name}</h4>
+              <p className="text-sm text-muted-foreground line-clamp-2">{skill.description}</p>
             </div>
           </div>
-        </div>
-        
-        <div className="flex items-center justify-between">
-          <SkillRating rating={skill.rating} />
-          <span className="text-sm font-medium text-text-light-secondary dark:text-text-dark-secondary">
-            {skill.rating}/5
-          </span>
-        </div>
-      </div>
+
+          <div className="flex items-center justify-between pt-3 border-t">
+            <SkillRating rating={skill.rating} />
+            <Badge variant="secondary" className="font-mono text-xs">
+              {skill.rating}/5
+            </Badge>
+          </div>
+        </CardContent>
+      </Card>
     </motion.div>
   );
 }
@@ -184,31 +186,52 @@ export function Skills() {
             variants={item}
             className="relative"
           >
-            <div className="bg-gradient-to-br from-white/90 to-white/70 dark:from-gray-800/90 dark:to-gray-800/70 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-700/50 h-full">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
+            <Card className="h-full border-2 hover:border-primary/30 transition-all duration-300 backdrop-blur-sm bg-card/95 shadow-xl hover:shadow-2xl group">
+              {/* Animated background gradient */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"
+                animate={{
+                  backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
+                }}
+                transition={{
+                  duration: 10,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              />
+
+              <CardHeader className="text-center pb-6 relative z-10">
+                <CardTitle className="text-2xl bg-gradient-to-r from-primary via-primary-600 to-secondary bg-clip-text text-transparent mb-3 group-hover:from-secondary group-hover:to-primary transition-all duration-500">
                   {category}
-                </h3>
-                <div className="w-16 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto" />
-              </div>
-              
-              <div className="space-y-4">
+                </CardTitle>
+                <div className="relative h-1 w-20 mx-auto rounded-full overflow-hidden bg-muted">
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-primary to-secondary"
+                    initial={{ x: '-100%' }}
+                    whileInView={{ x: '100%' }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.5, ease: "easeInOut" }}
+                  />
+                </div>
+              </CardHeader>
+
+              <CardContent className="space-y-3 relative z-10">
                 {skills.map((skill, skillIndex) => (
                   <motion.div
                     key={skill.name}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ 
+                    transition={{
                       delay: categoryIndex * 0.2 + skillIndex * 0.1,
-                      duration: 0.5 
+                      duration: 0.5
                     }}
                   >
                     <SkillCard skill={skill} />
                   </motion.div>
                 ))}
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </motion.div>
         ))}
       </motion.div>
