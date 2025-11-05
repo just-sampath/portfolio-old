@@ -1,7 +1,13 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Send, MapPin, Mail, Phone, MessageCircle } from 'lucide-react';
+import { Send, MapPin, Mail, MessageCircle, Check } from 'lucide-react';
 import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
 
 export function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -83,64 +89,70 @@ export function Contact() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Contact Information */}
-          <motion.div 
-            className="space-y-8"
+          <motion.div
+            className="space-y-6"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-gray-200/20 dark:border-gray-700/20">
-              <h3 className="text-2xl font-bold text-text-light-primary dark:text-text-dark-primary mb-6">
-                Let's Connect
-              </h3>
-              
-              <div className="space-y-6">
-                <motion.div 
-                  className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-primary/5 to-secondary/5 hover:from-primary/10 hover:to-secondary/10 transition-all duration-300"
+            <Card className="border-2 hover:border-primary/30 transition-all duration-300 backdrop-blur-sm bg-card/95 shadow-xl">
+              <CardHeader>
+                <CardTitle className="text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  Let's Connect
+                </CardTitle>
+                <CardDescription className="text-base">
+                  Feel free to reach out through any of these channels
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <motion.div
+                  className="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-r from-primary/5 to-secondary/5 hover:from-primary/10 hover:to-secondary/10 transition-all duration-300 group"
                   whileHover={{ scale: 1.02 }}
                 >
-                  <div className="p-3 rounded-lg bg-gradient-to-br from-primary to-secondary">
+                  <div className="p-3 rounded-xl bg-gradient-to-br from-primary to-secondary shadow-lg group-hover:shadow-xl transition-shadow">
                     <MapPin className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-text-light-primary dark:text-text-dark-primary">Location</h4>
-                    <p className="text-text-light-secondary dark:text-text-dark-secondary">Hyderabad, India</p>
+                    <h4 className="font-semibold mb-1">Location</h4>
+                    <p className="text-muted-foreground">Hyderabad, India</p>
                   </div>
                 </motion.div>
 
-                <motion.div 
-                  className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-primary/5 to-secondary/5 hover:from-primary/10 hover:to-secondary/10 transition-all duration-300"
+                <motion.div
+                  className="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-r from-primary/5 to-secondary/5 hover:from-primary/10 hover:to-secondary/10 transition-all duration-300 group"
                   whileHover={{ scale: 1.02 }}
                 >
-                  <div className="p-3 rounded-lg bg-gradient-to-br from-primary to-secondary">
+                  <div className="p-3 rounded-xl bg-gradient-to-br from-primary to-secondary shadow-lg group-hover:shadow-xl transition-shadow">
                     <Mail className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-text-light-primary dark:text-text-dark-primary">Email</h4>
-                    <a 
-                      href="mailto:ysampath36@gmail.com" 
-                      className="text-text-light-secondary dark:text-text-dark-secondary hover:text-primary transition-colors"
+                    <h4 className="font-semibold mb-1">Email</h4>
+                    <a
+                      href="mailto:ysampath36@gmail.com"
+                      className="text-muted-foreground hover:text-primary transition-colors"
                     >
                       ysampath36@gmail.com
                     </a>
                   </div>
                 </motion.div>
 
-                <motion.div 
-                  className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-primary/5 to-secondary/5 hover:from-primary/10 hover:to-secondary/10 transition-all duration-300"
+                <motion.div
+                  className="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-r from-primary/5 to-secondary/5 hover:from-primary/10 hover:to-secondary/10 transition-all duration-300 group"
                   whileHover={{ scale: 1.02 }}
                 >
-                  <div className="p-3 rounded-lg bg-gradient-to-br from-primary to-secondary">
+                  <div className="p-3 rounded-xl bg-gradient-to-br from-primary to-secondary shadow-lg group-hover:shadow-xl transition-shadow">
                     <MessageCircle className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-text-light-primary dark:text-text-dark-primary">Response Time</h4>
-                    <p className="text-text-light-secondary dark:text-text-dark-secondary">Usually within 24 hours</p>
+                    <h4 className="font-semibold mb-1">Response Time</h4>
+                    <Badge variant="secondary" className="mt-1">
+                      Usually within 24 hours
+                    </Badge>
                   </div>
                 </motion.div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </motion.div>
 
           {/* Contact Form */}
@@ -149,122 +161,123 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-gray-200/20 dark:border-gray-700/20"
           >
-            <h3 className="text-2xl font-bold text-text-light-primary dark:text-text-dark-primary mb-6">
-              Send a Message
-            </h3>
+            <Card className="border-2 hover:border-primary/30 transition-all duration-300 backdrop-blur-sm bg-card/95 shadow-xl">
+              <CardHeader>
+                <CardTitle className="text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  Send a Message
+                </CardTitle>
+                <CardDescription className="text-base">
+                  Fill out the form below and I'll get back to you as soon as possible
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 1 }}
+                    className="space-y-2"
+                  >
+                    <Label htmlFor="name">Full Name</Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      type="text"
+                      placeholder="John Doe"
+                      required
+                      className="backdrop-blur-sm"
+                    />
+                  </motion.div>
 
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 1 }}
-              >
-                <label htmlFor="name" className="block text-sm font-semibold mb-2 text-text-light-primary dark:text-text-dark-primary">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-gray-700/50 border border-gray-300/50 dark:border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-text-light-primary dark:text-text-dark-primary backdrop-blur-sm transition-all duration-300"
-                  placeholder="Your full name"
-                />
-              </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 1.2 }}
+                    className="space-y-2"
+                  >
+                    <Label htmlFor="email">Email Address</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="john.doe@example.com"
+                      required
+                      className="backdrop-blur-sm"
+                    />
+                  </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 1.2 }}
-              >
-                <label htmlFor="email" className="block text-sm font-semibold mb-2 text-text-light-primary dark:text-text-dark-primary">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-gray-700/50 border border-gray-300/50 dark:border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-text-light-primary dark:text-text-dark-primary backdrop-blur-sm transition-all duration-300"
-                  placeholder="your.email@example.com"
-                />
-              </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 1.4 }}
+                    className="space-y-2"
+                  >
+                    <Label htmlFor="subject">Subject</Label>
+                    <Input
+                      id="subject"
+                      name="subject"
+                      type="text"
+                      placeholder="What's this about?"
+                      required
+                      className="backdrop-blur-sm"
+                    />
+                  </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 1.4 }}
-              >
-                <label htmlFor="subject" className="block text-sm font-semibold mb-2 text-text-light-primary dark:text-text-dark-primary">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  required
-                  className="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-gray-700/50 border border-gray-300/50 dark:border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-text-light-primary dark:text-text-dark-primary backdrop-blur-sm transition-all duration-300"
-                  placeholder="What's this about?"
-                />
-              </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 1.6 }}
+                    className="space-y-2"
+                  >
+                    <Label htmlFor="message">Message</Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      placeholder="Tell me about your project or just say hello!"
+                      required
+                      rows={6}
+                      className="resize-none backdrop-blur-sm"
+                    />
+                  </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 1.6 }}
-              >
-                <label htmlFor="message" className="block text-sm font-semibold mb-2 text-text-light-primary dark:text-text-dark-primary">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-gray-700/50 border border-gray-300/50 dark:border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-text-light-primary dark:text-text-dark-primary backdrop-blur-sm transition-all duration-300 resize-none"
-                  placeholder="Tell me about your project or just say hello!"
-                />
-              </motion.div>
-
-              <motion.button
-                type="submit"
-                disabled={isSubmitting || isSubmitted}
-                className={`w-full flex items-center justify-center gap-3 px-6 py-4 rounded-lg bg-gradient-to-r from-primary to-secondary hover:from-primary-600 hover:to-secondary-600 text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl ${
-                  (isSubmitting || isSubmitted) ? 'opacity-50 cursor-not-allowed' : 'hover:scale-[1.02]'
-                }`}
-                whileHover={{ scale: isSubmitting || isSubmitted ? 1 : 1.02 }}
-                whileTap={{ scale: isSubmitting || isSubmitted ? 1 : 0.98 }}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 1.8 }}
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    Sending...
-                  </>
-                ) : isSubmitted ? (
-                  <>
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <div className="w-2 h-2 bg-white rounded-full" />
-                    </div>
-                    Message Sent!
-                  </>
-                ) : (
-                  <>
-                    Send Message
-                    <Send size={20} />
-                  </>
-                )}
-              </motion.button>
-            </form>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 1.8 }}
+                  >
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting || isSubmitted}
+                      className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary-600 hover:to-secondary-600 shadow-lg hover:shadow-xl transition-all group"
+                      size="lg"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
+                          Sending...
+                        </>
+                      ) : isSubmitted ? (
+                        <>
+                          <Check className="w-5 h-5 mr-2" />
+                          Message Sent!
+                        </>
+                      ) : (
+                        <>
+                          Send Message
+                          <Send className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                        </>
+                      )}
+                    </Button>
+                  </motion.div>
+                </form>
+              </CardContent>
+            </Card>
           </motion.div>
         </div>
       </div>

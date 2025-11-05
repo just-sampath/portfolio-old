@@ -1,11 +1,11 @@
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as random from 'maath/random';
-import { useSpring } from '@react-spring/web';
+import type { Points as PointsType } from 'three';
 
 function StarField({ count = 3000 }) {
-  const points = useRef<any>();
+  const points = useRef<PointsType>(null);
   const sphere = random.inSphere(new Float32Array(count * 3), { radius: 1.2 });
 
   useFrame((state, delta) => {

@@ -6,14 +6,9 @@ import tseslint from 'typescript-eslint';
 
 export default [
   {
-    ignores: [
-      '**/dist/**/*',
-      '**/dist/*',
-      'dist',
-      'dist/**',
-      'dist/**/*',
-      'node_modules/**',
-    ],
+    ignores: ['**/dist/**', '**/node_modules/**'],
+  },
+  {
     languageOptions: {
       ecmaVersion: 2020,
       sourceType: 'module',

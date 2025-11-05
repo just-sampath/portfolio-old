@@ -1,6 +1,10 @@
 import { motion } from 'framer-motion';
 import { GradientCard } from './GradientCard';
-import { Github, ExternalLink, Star, GitFork } from 'lucide-react';
+import { Github, Star, GitFork, ArrowUpRight } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 
 const projects = [
   {
@@ -77,96 +81,103 @@ export function Projects() {
       >
         {projects.map((project, index) => (
           <motion.div key={index} variants={item}>
-            <div className="group relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl overflow-hidden shadow-xl border border-gray-200/20 dark:border-gray-700/20 hover:shadow-2xl hover:border-primary/30 transition-all duration-500 transform hover:-translate-y-2">
-              
+            <Card className="group relative overflow-hidden border-2 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 backdrop-blur-sm bg-card/95">
+              {/* Animated gradient background */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                animate={{
+                  backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
+                }}
+                transition={{
+                  duration: 10,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              />
+
               {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={project.image} 
+              <div className="relative h-52 overflow-hidden">
+                <img
+                  src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+
                 {/* Status Badge */}
                 <div className="absolute top-4 right-4">
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                    project.status === 'Completed' 
-                      ? 'bg-green-500/20 text-green-400 border border-green-500/30' 
-                      : 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
-                  }`}>
+                  <Badge
+                    variant={project.status === 'Completed' ? 'default' : 'secondary'}
+                    className={cn(
+                      'backdrop-blur-sm shadow-lg',
+                      project.status === 'Completed'
+                        ? 'bg-green-500/90 hover:bg-green-500 border-green-400'
+                        : 'bg-amber-500/90 hover:bg-amber-500 border-amber-400'
+                    )}
+                  >
                     {project.status}
-                  </span>
+                  </Badge>
+                </div>
+
+                {/* GitHub Stats Overlay */}
+                <div className="absolute bottom-4 left-4 flex items-center gap-3">
+                  <Badge variant="secondary" className="backdrop-blur-md bg-background/80">
+                    <Star className="w-3 h-3 mr-1 fill-yellow-400 text-yellow-400" />
+                    {project.stars}
+                  </Badge>
+                  <Badge variant="secondary" className="backdrop-blur-md bg-background/80">
+                    <GitFork className="w-3 h-3 mr-1" />
+                    {project.forks}
+                  </Badge>
                 </div>
               </div>
 
-              <div className="p-6">
-                {/* Header */}
-                <div className="mb-4">
-                  <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
-                    {project.title}
-                  </h3>
-                  
-                  {/* GitHub Stats */}
-                  <div className="flex items-center gap-4 text-sm text-text-light-secondary dark:text-text-dark-secondary mb-3">
-                    <div className="flex items-center gap-1">
-                      <Star className="w-4 h-4" />
-                      <span>{project.stars}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <GitFork className="w-4 h-4" />
-                      <span>{project.forks}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className="text-text-light-secondary dark:text-text-dark-secondary mb-6 leading-relaxed">
+              <CardHeader>
+                <CardTitle className="text-2xl bg-gradient-to-r from-primary via-primary-600 to-secondary bg-clip-text text-transparent group-hover:from-secondary group-hover:to-primary transition-all duration-500">
+                  {project.title}
+                </CardTitle>
+                <CardDescription className="text-base leading-relaxed">
                   {project.description}
-                </p>
+                </CardDescription>
+              </CardHeader>
 
+              <CardContent>
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2">
                   {project.technologies.map(tech => (
-                    <motion.span
+                    <Badge
                       key={tech}
-                      whileHover={{ scale: 1.05 }}
-                      className="px-3 py-1 bg-gradient-to-r from-primary/10 to-secondary/10 
-                               dark:from-primary/20 dark:to-secondary/20 rounded-full text-sm font-medium
-                               text-primary dark:text-primary border border-primary/20 backdrop-blur-sm"
+                      variant="outline"
+                      className="border-primary/30 bg-primary/5 hover:bg-primary/10 transition-colors"
                     >
                       {tech}
-                    </motion.span>
+                    </Badge>
                   ))}
                 </div>
+              </CardContent>
 
-                {/* Action Buttons */}
-                <div className="flex gap-4">
-                  <motion.a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors text-text-light-primary dark:text-text-dark-primary"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Github size={18} />
-                    <span>Code</span>
-                  </motion.a>
-                  <motion.a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary to-secondary hover:from-primary-600 hover:to-secondary-600 text-white rounded-lg transition-all"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <ExternalLink size={18} />
-                    <span>Live Demo</span>
-                  </motion.a>
-                </div>
-              </div>
-            </div>
+              <CardFooter className="gap-3">
+                <Button
+                  variant="outline"
+                  className="flex-1 group/btn"
+                  asChild
+                >
+                  <a href={project.github} target="_blank" rel="noopener noreferrer">
+                    <Github className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform" />
+                    View Code
+                  </a>
+                </Button>
+                <Button
+                  className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary-600 hover:to-secondary-600 group/btn"
+                  asChild
+                >
+                  <a href={project.live} target="_blank" rel="noopener noreferrer">
+                    Live Demo
+                    <ArrowUpRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                  </a>
+                </Button>
+              </CardFooter>
+            </Card>
           </motion.div>
         ))}
       </motion.div>
