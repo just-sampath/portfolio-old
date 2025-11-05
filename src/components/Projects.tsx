@@ -4,6 +4,7 @@ import { Github, Star, GitFork, ArrowUpRight } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 
 const projects = [
   {
@@ -107,11 +108,12 @@ export function Projects() {
                 <div className="absolute top-4 right-4">
                   <Badge
                     variant={project.status === 'Completed' ? 'default' : 'secondary'}
-                    className={`backdrop-blur-sm shadow-lg ${
+                    className={cn(
+                      'backdrop-blur-sm shadow-lg',
                       project.status === 'Completed'
                         ? 'bg-green-500/90 hover:bg-green-500 border-green-400'
                         : 'bg-amber-500/90 hover:bg-amber-500 border-amber-400'
-                    }`}
+                    )}
                   >
                     {project.status}
                   </Badge>
