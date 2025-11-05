@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Send, MapPin, Mail, Phone, MessageCircle, Check } from 'lucide-react';
+import { Send, MapPin, Mail, MessageCircle, Check } from 'lucide-react';
 import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
