@@ -3,7 +3,7 @@
   "private": false,
   "version": "0.0.1",
   "type": "module",
-  "homepage": "http://justsampath.me/portfolio-old",
+  "homepage": "http://just-sampath.in/portfolio-old",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
