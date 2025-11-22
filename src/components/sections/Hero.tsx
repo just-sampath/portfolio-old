@@ -4,14 +4,28 @@ import TypewriterText from '../ui/TypewriterText';
 
 const Hero: React.FC = () => {
     const [cursorVisible, setCursorVisible] = useState(true);
+    const [showScrollIndicator, setShowScrollIndicator] = useState(true);
 
     useEffect(() => {
         const cursorInterval = setInterval(() => setCursorVisible(v => !v), 530);
         return () => clearInterval(cursorInterval);
     }, []);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setShowScrollIndicator(false);
+            } else {
+                setShowScrollIndicator(true);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
-        <section id="about" className="min-h-[80vh] flex flex-col justify-center border-l border-white/10 pl-6 sm:pl-10 animate-in slide-in-from-bottom-10 duration-1000 fade-in pt-24">
+        <section id="about" className="min-h-[80vh] flex flex-col justify-center border-l border-white/10 pl-6 sm:pl-10 animate-in slide-in-from-bottom-10 duration-1000 fade-in pt-24 relative">
             <div className="mb-8 text-xs sm:text-sm text-gray-500 flex items-center gap-2">
                 <ChevronRight size={14} className="text-white animate-pulse" />
                 <span>./init_profile.sh --force</span>
@@ -52,7 +66,7 @@ const Hero: React.FC = () => {
                 </a>
             </div>
 
-            <div className="absolute bottom-10 left-4 sm:left-10 animate-bounce text-gray-600">
+            <div className={`absolute bottom-10 left-4 sm:left-10 animate-bounce text-gray-600 transition-opacity duration-300 ${showScrollIndicator ? 'opacity-100' : 'opacity-0'}`}>
                 <ArrowDown size={24} />
             </div>
         </section>

@@ -14,7 +14,7 @@ const ExperienceLog: React.FC = () => {
                     {
                         role: "BACKEND LEAD",
                         company: "CHAT AID",
-                        date: "2025-01 -- PRESENT",
+                        date: "2025-01 - PRESENT",
                         items: [
                             "Led backend dev for high-throughput Slack integrations (1000s msg/day).",
                             "Optimized event-driven architecture & robust webhook ingestion.",
@@ -25,7 +25,7 @@ const ExperienceLog: React.FC = () => {
                     {
                         role: "SDE I",
                         company: "SPRINGWORKS",
-                        date: "2023-07 -- 2024-12",
+                        date: "2023-07 - 2024-12",
                         items: [
                             "Built agent-powered Slack automations (JIRA) with FastAPI.",
                             "Integrated Node.js/Express services with MongoDB & AI agents.",
