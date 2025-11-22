@@ -1,20 +1,15 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import { fileURLToPath } from 'node:url';
-import { dirname, resolve } from 'node:path';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+import path from 'path'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  base: "/portfolio-old",
+  plugins: [react(), tailwindcss()],
+  base: '/portfolio-old/',
   resolve: {
     alias: {
-      "@": resolve(__dirname, "./src"),
+      "@": path.resolve(__dirname, "./src"),
     },
   },
-  optimizeDeps: {
-    exclude: ['lucide-react'],
-  },
-});
+})

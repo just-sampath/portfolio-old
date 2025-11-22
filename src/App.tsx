@@ -1,33 +1,51 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useTheme } from './hooks/useTheme';
-import { Navbar } from './components/Navbar';
-import { Home } from './pages/Home';
-import { About } from './pages/About';
-import { Work } from './pages/Work';
-import { Contact } from './pages/Contact';
-import { NotFound } from './pages/NotFound';
+import React, { useState, useEffect } from 'react';
+import TerminalLayout from './components/layout/TerminalLayout';
+import BootScreen from './components/ui/BootScreen';
+import Header from './components/sections/Header';
+import Hero from './components/sections/Hero';
+import SkillsMatrix from './components/sections/SkillsMatrix';
+import ExperienceLog from './components/sections/ExperienceLog';
+import ProjectsGrid from './components/sections/ProjectsGrid';
+import Footer from './components/sections/Footer';
 
-export function App() {
-  const { isDark, toggleTheme } = useTheme();
+const App: React.FC = () => {
+  const [booted, setBooted] = useState(false);
+  const [activeCommand, setActiveCommand] = useState('');
+
+  useEffect(() => {
+    // Simulate boot delay or check local storage if needed
+    // For now, we rely on BootScreen's onBootComplete
+  }, []);
+
+  const handleBootComplete = () => {
+    setBooted(true);
+  };
+
+  const scrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActiveCommand(id);
+    }
+  };
+
+  if (!booted) {
+    return <BootScreen onBootComplete={handleBootComplete} />;
+  }
 
   return (
-    <BrowserRouter>
-      <div className={`min-h-screen w-full overflow-x-hidden transition-colors duration-200 ${
-        isDark ? 'dark bg-gray-900 text-text-primary-dark' : 'bg-gray-50 text-text-primary'
-      }`}>
-        <Navbar isDark={isDark} toggleTheme={toggleTheme} />
-        <main className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/portfolio-old" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/work" element={<Work />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/404" element={<NotFound />} />
-            <Route path="*" element={<Home />} />
-          </Routes>
-        </main>
+    <TerminalLayout>
+      <Header activeCommand={activeCommand} scrollTo={scrollTo} />
+
+      <div className="pt-24 px-4 sm:px-8 md:px-12 lg:px-16 max-w-[1600px] mx-auto pb-20">
+        <Hero />
+        <SkillsMatrix />
+        <ExperienceLog />
+        <ProjectsGrid />
+        <Footer />
       </div>
-    </BrowserRouter>
+    </TerminalLayout>
   );
-}
+};
+
+export default App;
