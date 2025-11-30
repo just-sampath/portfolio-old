@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, Github, Linkedin, ArrowDown } from 'lucide-react';
+import { ChevronRight, Github, Linkedin, ArrowDown, Briefcase } from 'lucide-react';
 import TypewriterText from '../ui/TypewriterText';
+import { profile } from '../../data/profile';
 
 const Hero: React.FC = () => {
     const [cursorVisible, setCursorVisible] = useState(true);
@@ -39,28 +40,44 @@ const Hero: React.FC = () => {
                 <div className="absolute top-0 left-0 w-1 h-full bg-white animate-pulse"></div>
                 <p className="flex flex-wrap items-center gap-2">
                     <span className="bg-white text-black px-2 py-0.5 text-xs font-bold uppercase">Current Role</span>
-                    Backend Lead & AI Engineer
+                    {profile.role}
                 </p>
                 <p className="flex flex-wrap items-center gap-2">
-                    <span className="bg-gray-800 text-white px-2 py-0.5 text-xs font-bold uppercase border border-gray-700">Mission</span>
-                    Architecting scalable event-driven systems.
+                    <span className="bg-gray-800 text-white px-2 py-0.5 text-xs font-bold uppercase border border-gray-700">Stack</span>
+                    <span className="text-gray-300">{profile.tagline}</span>
                 </p>
                 <div className="pt-4 font-light text-gray-400">
                     <TypewriterText
-                        text="> Specializing in high-throughput integrations, distributed systems, and intelligent agent workflows."
+                        text="> Specializing in RAG pipelines, serverless architectures, and distributed backend systems."
                         delay={1200}
                     />
                     <span className={`${cursorVisible ? 'opacity-100' : 'opacity-0'} text-white ml-1 inline-block w-2 h-4 bg-white align-middle`}></span>
                 </div>
             </div>
 
-            <div className="mt-12 flex flex-wrap gap-4">
-                <a href="https://github.com/just-sampath" target="_blank" rel="noreferrer" className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 border border-white text-white uppercase text-xs font-bold tracking-widest overflow-hidden transition-all hover:bg-white hover:text-black">
+            {/* Experience Badge */}
+            <div className="mt-8 inline-flex items-center gap-3 text-sm font-mono border border-white/30 px-5 py-3 bg-white/5 hover:bg-white hover:text-black transition-all duration-300 group">
+                <span className="text-2xl font-bold text-white group-hover:text-black">2+</span>
+                <div className="flex flex-col">
+                    <span className="text-[10px] text-gray-500 uppercase group-hover:text-gray-600">Years of</span>
+                    <span className="text-white font-semibold group-hover:text-black">Experience</span>
+                </div>
+            </div>
+
+            {profile.availableForWork && (
+                <div className="mt-6 inline-flex items-center gap-2 text-xs text-green-400 border border-green-400/30 px-3 py-1.5 bg-green-400/5 w-fit animate-pulse">
+                    <Briefcase size={14} />
+                    <span>OPEN_TO_OPPORTUNITIES</span>
+                </div>
+            )}
+
+            <div className="mt-8 flex flex-wrap gap-4">
+                <a href={profile.github} target="_blank" rel="noreferrer" className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 border border-white text-white uppercase text-xs font-bold tracking-widest overflow-hidden transition-all hover:bg-white hover:text-black">
                     <Github size={16} className="mr-2 group-hover:animate-bounce" />
                     <span>GitHub</span>
                     <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 </a>
-                <a href="https://linkedin.com/in/just-sampath" target="_blank" rel="noreferrer" className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 bg-white text-black border border-white uppercase text-xs font-bold tracking-widest overflow-hidden transition-all hover:bg-black hover:text-white">
+                <a href={profile.linkedin} target="_blank" rel="noreferrer" className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 bg-white text-black border border-white uppercase text-xs font-bold tracking-widest overflow-hidden transition-all hover:bg-black hover:text-white">
                     <Linkedin size={16} className="mr-2 group-hover:animate-bounce" />
                     <span>LinkedIn</span>
                 </a>

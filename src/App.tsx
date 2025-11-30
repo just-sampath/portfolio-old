@@ -10,12 +10,44 @@ import Footer from './components/sections/Footer';
 
 const App: React.FC = () => {
   const [booted, setBooted] = useState(false);
-  const [activeCommand, setActiveCommand] = useState('');
+  const [activeCommand, setActiveCommand] = useState('about');
 
   useEffect(() => {
     // Simulate boot delay or check local storage if needed
     // For now, we rely on BootScreen's onBootComplete
   }, []);
+
+  // Track which section is currently in view
+  useEffect(() => {
+    if (!booted) return;
+
+    const sectionIds = ['about', 'skills', 'experience', 'projects', 'contact'];
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px', // Trigger when section is in the middle-ish of viewport
+      threshold: 0,
+    };
+
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveCommand(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sectionIds.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, [booted]);
 
   const handleBootComplete = () => {
     setBooted(true);

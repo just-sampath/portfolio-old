@@ -29,17 +29,23 @@ const Header: React.FC<HeaderProps> = ({ activeCommand, scrollTo }) => {
                 </div>
                 <span className="hidden sm:inline text-gray-500 ml-2">~/portfolio/main</span>
             </div>
-            <div className="flex items-center gap-4 sm:gap-6">
-                {['ABOUT', 'EXPERIENCE', 'PROJECTS'].map((item) => (
+            <div className="flex items-center gap-3 sm:gap-4 md:gap-6 overflow-x-auto">
+                {[
+                    { label: 'ABOUT', id: 'about' },
+                    { label: 'SKILLS', id: 'skills' },
+                    { label: 'EXPERIENCE', id: 'experience' },
+                    { label: 'HIGHLIGHTS', id: 'projects' },
+                    { label: 'CONTACT', id: 'contact' },
+                ].map((item) => (
                     <button
-                        key={item}
-                        onClick={() => scrollTo(item.toLowerCase())}
-                        className={`hover:text-white hover:underline decoration-1 underline-offset-4 transition-all ${activeCommand === item.toLowerCase() ? 'text-white font-bold' : 'text-gray-500'}`}
+                        key={item.id}
+                        onClick={() => scrollTo(item.id)}
+                        className={`hover:text-white hover:underline decoration-1 underline-offset-4 transition-all whitespace-nowrap ${activeCommand === item.id ? 'text-white font-bold' : 'text-gray-500'}`}
                     >
-                        {item}
+                        {item.label}
                     </button>
                 ))}
-                <span className="hidden md:inline text-white bg-gray-900 px-2 py-1 border border-gray-800">
+                <span className="hidden md:inline text-white bg-gray-900 px-2 py-1 border border-gray-800 ml-2">
                     {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </span>
             </div>
