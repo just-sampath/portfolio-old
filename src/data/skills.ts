@@ -251,12 +251,3 @@ export const skillCategories: SkillCategory[] = [
         ],
     },
 ];
-
-// Flatten all skills for search/filter functionality
-export const allSkills = skillCategories.flatMap((cat) =>
-    cat.skills.map((skill) => ({
-        ...skill,
-        category: cat.name,
-        categoryId: cat.id,
-    }))
-);

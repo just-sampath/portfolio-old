@@ -20,10 +20,10 @@ export const experiences: Experience[] = [
         id: "chataid-lead",
         role: "Team Lead",
         company: "Chat Aid",
-        period: "2025-01 - Present",
+        period: "2025-07 - Present",
         status: "current",
         summary:
-            "Leading backend architecture and AI systems for an enterprise RAG chatbot platform. Promoted to Team Lead while being the most junior member, now overseeing all technical decisions across Node.js, Python, and AWS infrastructure.",
+            "Promoted from Backend Developer to Team Lead. Leading backend architecture and AI systems for an enterprise RAG chatbot platform; as the most junior member elevated to lead, now overseeing all technical decisions across Node.js, Python, and AWS infrastructure.",
         achievements: [
             {
                 text: "Reduced RAG response times from 80s to 25-30s through system prompt optimization and vector DB indexing",

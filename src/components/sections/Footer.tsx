@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Mail, Globe, Briefcase, Github, Linkedin } from 'lucide-react';
 import { profile } from '../../data/profile';
+import { useInterval } from '../../hooks/useInterval';
+import ContactForm from './ContactForm';
 
 const Footer: React.FC = () => {
     const [currentTime, setCurrentTime] = useState(new Date());
     const [uptime, setUptime] = useState(0);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentTime(new Date());
-            setUptime(prev => prev + 1);
-        }, 1000);
-        return () => clearInterval(interval);
-    }, []);
+    useInterval(() => {
+        setCurrentTime(new Date());
+        setUptime(prev => prev + 1);
+    }, 1000);
 
     return (
         <footer id="contact" className="border-t border-white/20 pt-20 pb-10">
@@ -63,18 +62,20 @@ const Footer: React.FC = () => {
                             <a
                                 href={profile.github}
                                 target="_blank"
-                                rel="noreferrer"
-                                className="p-3 border border-gray-700 hover:border-white hover:bg-white hover:text-black transition-all group"
+                                rel="noopener noreferrer"
+                                aria-label="GitHub"
+                                className="p-3 border border-gray-700 hover:border-white hover:bg-white hover:text-black transition-all group focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                             >
-                                <Github size={20} className="text-gray-500 group-hover:text-black" />
+                                <Github size={20} className="text-gray-500 group-hover:text-black" aria-hidden="true" />
                             </a>
                             <a
                                 href={profile.linkedin}
                                 target="_blank"
-                                rel="noreferrer"
-                                className="p-3 border border-gray-700 hover:border-white hover:bg-white hover:text-black transition-all group"
+                                rel="noopener noreferrer"
+                                aria-label="LinkedIn"
+                                className="p-3 border border-gray-700 hover:border-white hover:bg-white hover:text-black transition-all group focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                             >
-                                <Linkedin size={20} className="text-gray-500 group-hover:text-black" />
+                                <Linkedin size={20} className="text-gray-500 group-hover:text-black" aria-hidden="true" />
                             </a>
                         </div>
                     </div>
@@ -101,6 +102,13 @@ const Footer: React.FC = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div className="mt-12 max-w-2xl">
+                <p className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mb-3">
+                    CONTACT_CHANNEL // form
+                </p>
+                <ContactForm />
             </div>
         </footer>
     );

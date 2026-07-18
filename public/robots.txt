@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://just-sampath.in/sitemap.xml

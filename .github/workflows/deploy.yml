@@ -5,21 +5,63 @@ on:
     branches:
       - main
 
+concurrency:
+  group: pages
+  # Avoid aborting a run mid gh-pages publish.
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Check EmailJS secrets (optional)
+        env:
+          VITE_EMAILJS_SERVICE_ID: ${{ secrets.VITE_EMAILJS_SERVICE_ID }}
+          VITE_EMAILJS_TEMPLATE_ID: ${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}
+          VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}
+        run: |
+          missing=0
+          for key in VITE_EMAILJS_SERVICE_ID VITE_EMAILJS_TEMPLATE_ID VITE_EMAILJS_PUBLIC_KEY; do
+            if [ -z "${!key}" ]; then
+              echo "Optional secret not set: $key"
+              missing=1
+            fi
+          done
+          if [ "$missing" -ne 0 ]; then
+            echo "EmailJS secrets are optional for now — deploy will continue."
+            echo "Contact form will show 'unavailable' until all three VITE_EMAILJS_* secrets are set."
+          else
+            echo "EmailJS secrets present — contact form will be baked into the build."
+          fi
+
+      - name: Build
+        env:
+          VITE_EMAILJS_SERVICE_ID: ${{ secrets.VITE_EMAILJS_SERVICE_ID }}
+          VITE_EMAILJS_TEMPLATE_ID: ${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}
+          VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}
+        run: npm run build
 
       - name: Configure Git
         run: |
@@ -30,5 +72,10 @@ jobs:
         env:
           PORTFOLIO_TOKEN: ${{ secrets.PORTFOLIO_TOKEN }}
         run: |
+          if [ -z "$PORTFOLIO_TOKEN" ]; then
+            echo "Missing required secret: PORTFOLIO_TOKEN"
+            exit 1
+          fi
           git remote set-url origin https://x-access-token:${PORTFOLIO_TOKEN}@github.com/${{ github.repository }}.git
-          npm run deploy
+          # Build already ran; deploy dist only (skip predeploy rebuild without env).
+          npx gh-pages -d dist
