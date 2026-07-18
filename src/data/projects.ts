@@ -19,10 +19,10 @@ export const projects: Project[] = [
     {
         id: "rag-optimization",
         name: "RAG_PIPELINE_OPTIMIZER",
-        tagline: "80s → 25s response time optimization",
+        tagline: "80s → 25-30s response time optimization",
         description:
             "Comprehensive optimization of a production RAG system serving enterprise customers. Tackled the full stack from vector database indexing to prompt engineering.",
-        impact: "Reduced response times by 68%, improved answer relevance by 40%",
+        impact: "Reduced response times by 60%+ (80s → 25-30s); improved answer relevance via reranking and indexing",
         technologies: [
             "Python",
             "FastAPI",

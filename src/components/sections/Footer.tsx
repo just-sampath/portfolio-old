@@ -25,13 +25,12 @@ const Footer: React.FC = () => {
                     {profile.availableForWork && (
                         <div className="mb-6 inline-flex items-center gap-2 text-xs text-green-400 border border-green-400/30 px-3 py-1.5 bg-green-400/5">
                             <Briefcase size={14} />
-                            <span>ACTIVELY_SEEKING_OPPORTUNITIES</span>
+                            <span>{profile.availabilityLabel}</span>
                         </div>
                     )}
 
                     <p className="text-gray-400 mb-8 max-w-md leading-relaxed">
-                        Open to backend engineering, AI/ML engineering, and technical lead roles.
-                        Interested in RAG systems, distributed architectures, and AWS infrastructure.
+                        {profile.availabilityBlurb}
                     </p>
 
                     <div className="space-y-6">
@@ -91,8 +90,8 @@ const Footer: React.FC = () => {
                     </div>
                     <div className="space-y-3">
                         <div className="flex justify-between"><span>SESSION_UPTIME</span><span className="text-white font-bold">{uptime}s</span></div>
-                        <div className="flex justify-between"><span>EXPERIENCE</span><span className="text-white">2+ Years</span></div>
-                        <div className="flex justify-between"><span>SPECIALIZATION</span><span className="text-white">Backend + RAG</span></div>
+                        <div className="flex justify-between"><span>EXPERIENCE</span><span className="text-white">{profile.yearsOfExperience}+ Years</span></div>
+                        <div className="flex justify-between"><span>SPECIALIZATION</span><span className="text-white">Full Stack + RAG</span></div>
                         <div className="flex justify-between"><span>FRAMEWORK</span><span className="text-white">React + Vite</span></div>
                         <div className="flex justify-between"><span>RENDERER</span><span className="text-white">Tailwind_v4</span></div>
                         <div className="flex justify-between"><span>LOCAL_TIME</span><span className="text-white">{currentTime.toLocaleTimeString()}</span></div>

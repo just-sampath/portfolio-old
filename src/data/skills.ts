@@ -22,7 +22,7 @@ export const skillCategories: SkillCategory[] = [
                 name: "Node.js",
                 level: 95,
                 description:
-                    "Primary backend language for 2+ years. Built production systems handling enterprise workloads.",
+                    "Primary backend language for 3+ years. Built production systems handling enterprise workloads.",
                 projects: ["Albus RAG Platform", "Chat Aid Backend", "Custom APIs"],
             },
             {
@@ -35,6 +35,20 @@ export const skillCategories: SkillCategory[] = [
                     "Lambda Document Processing",
                     "Agentic Actions",
                 ],
+            },
+            {
+                name: "TypeScript",
+                level: 88,
+                description:
+                    "Typed full-stack development across React frontends and Node.js services.",
+                projects: ["Portfolio", "Chat Aid", "Concentrix tooling"],
+            },
+            {
+                name: "React",
+                level: 80,
+                description:
+                    "Frontend work for product UIs and cross-functional delivery alongside Node and Python services.",
+                projects: ["Chat Aid Frontend"],
             },
             {
                 name: "Express.js",
@@ -112,6 +126,13 @@ export const skillCategories: SkillCategory[] = [
                     "Subnets, security groups, internal/external ALBs, and Route 53.",
                 projects: ["Chat Aid Infrastructure"],
             },
+            {
+                name: "Azure_Functions",
+                level: 82,
+                description:
+                    "Serverless WFM reporting pipelines with Claude for query generation and aggregation.",
+                projects: ["Concentrix WFM Reporting"],
+            },
         ],
     },
     {
@@ -123,7 +144,7 @@ export const skillCategories: SkillCategory[] = [
                 name: "MongoDB",
                 level: 95,
                 description:
-                    "Primary database for 2+ years. Aggregation pipelines, indexing optimization, state management.",
+                    "Primary database for 3+ years. Aggregation pipelines, indexing optimization, state management.",
                 projects: ["Albus", "Chat Aid", "Agentic State Management"],
             },
             {
@@ -151,6 +172,12 @@ export const skillCategories: SkillCategory[] = [
                 description:
                     "Relational database for structured data and reporting needs.",
                 projects: ["AI Call Automation"],
+            },
+            {
+                name: "Valkey",
+                level: 78,
+                description: "Redis-compatible caching and queue-adjacent workloads in production stacks.",
+                projects: ["Chat Aid Caching"],
             },
         ],
     },
@@ -207,6 +234,13 @@ export const skillCategories: SkillCategory[] = [
                 description:
                     "Embedding models and reranking for two-way relevance scoring.",
                 projects: ["Chat Aid Reranking"],
+            },
+            {
+                name: "Claude",
+                level: 88,
+                description:
+                    "Agentic workflows, code plugins, and reporting automation with Claude and related tooling.",
+                projects: ["Concentrix Claude Plugin", "WFM Pipelines"],
             },
         ],
     },

@@ -17,13 +17,50 @@ export interface Experience {
 
 export const experiences: Experience[] = [
     {
+        id: "concentrix-se2",
+        role: "Software Engineer II",
+        company: "Concentrix",
+        period: "2026-01 - Present",
+        status: "current",
+        summary:
+            "Full-stack and AI engineering on production RAG and WFM automation systems—optimizing chatbot workflows, shipping banking RAG under tight deadlines, and building Claude/Azure-powered reporting pipelines.",
+        achievements: [
+            {
+                text: "Optimized RAG chatbot workflows with parent-child chunking, pre-canned routing, task-based model selection, and parallelized retrieval/LLM calls",
+                highlight: true,
+            },
+            {
+                text: "Delivered a modular, provider/model-agnostic banking RAG chatbot to production in 5 days with hybrid search and hierarchical chunking",
+                highlight: true,
+            },
+            {
+                text: "Built a Claude Code plugin with 12 agents, 7 hooks, 9 verification gates, 16 skills, 4 commands, and reusable templates",
+                highlight: true,
+            },
+            {
+                text: "Developed WFM reporting pipelines with Claude on Azure Functions (query generation, aggregation, production deployment)",
+            },
+            {
+                text: "Converted 7 manual WFM reports per week into AI-assisted workflows across query and aggregation-heavy use cases",
+            },
+        ],
+        technologies: [
+            "Python",
+            "Node.js",
+            "Claude",
+            "Azure Functions",
+            "RAG",
+            "Hybrid Search",
+        ],
+    },
+    {
         id: "chataid-lead",
         role: "Team Lead",
         company: "Chat Aid",
-        period: "2025-07 - Present",
-        status: "current",
+        period: "2025-05 - 2025-12",
+        status: "completed",
         summary:
-            "Promoted from Backend Developer to Team Lead. Leading backend architecture and AI systems for an enterprise RAG chatbot platform; as the most junior member elevated to lead, now overseeing all technical decisions across Node.js, Python, and AWS infrastructure.",
+            "Led cross-functional development across Node.js backend, Python RAG services, and React frontend. Drove RAG latency improvements, serverless document processing, and vector DB infrastructure for an enterprise chatbot platform.",
         achievements: [
             {
                 text: "Reduced RAG response times from 80s to 25-30s through system prompt optimization and vector DB indexing",
@@ -67,9 +104,9 @@ export const experiences: Experience[] = [
     },
     {
         id: "chataid-be",
-        role: "Backend Developer",
+        role: "Backend Lead",
         company: "Chat Aid",
-        period: "2025-01 - 2025-06",
+        period: "2025-01 - 2025-05",
         status: "completed",
         summary:
             "Sole backend owner responsible for the entire Node.js and Python backend ecosystem. Set up complete AWS infrastructure from scratch and drove critical optimizations.",
@@ -84,6 +121,12 @@ export const experiences: Experience[] = [
             {
                 text: "Built CI/CD pipelines with automated deployments to AWS",
                 highlight: true,
+            },
+            {
+                text: "Implemented webhook → S3 multipart uploads with 15MB batch processing",
+            },
+            {
+                text: "Built streaming byte-level file processing into Qdrant to avoid loading entire files into memory",
             },
             {
                 text: "Optimized data ingestion to stream from S3 instead of loading entire files",
@@ -116,7 +159,7 @@ export const experiences: Experience[] = [
         role: "Software Development Engineer I",
         company: "Springworks",
         companyUrl: "https://www.springworks.in/albus/",
-        period: "2023-08 - 2024-12",
+        period: "2023-07 - 2024-12",
         status: "completed",
         summary:
             "Backend developer for Albus, an enterprise RAG chatbot ingesting data from 50+ sources. Grew from writing test cases to owning critical features and leading the Agentic Actions initiative.",

@@ -48,7 +48,7 @@ const Hero: React.FC = () => {
                 </p>
                 <div className="pt-4 font-light text-gray-400">
                     <TypewriterText
-                        text="> Specializing in RAG pipelines, serverless architectures, and distributed backend systems."
+                        text="> Specializing in RAG pipelines, serverless architectures, and full-stack systems."
                         delay={1200}
                     />
                     <span className={`${cursorVisible ? 'opacity-100' : 'opacity-0'} text-white ml-1 inline-block w-2 h-4 bg-white align-middle`}></span>
@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
 
             {/* Experience Badge */}
             <div className="mt-8 inline-flex items-center gap-3 text-sm font-mono border border-white/30 px-5 py-3 bg-white/5 hover:bg-white hover:text-black transition-all duration-300 group">
-                <span className="text-2xl font-bold text-white group-hover:text-black">2+</span>
+                <span className="text-2xl font-bold text-white group-hover:text-black">{profile.yearsOfExperience}+</span>
                 <div className="flex flex-col">
                     <span className="text-[10px] text-gray-500 uppercase group-hover:text-gray-600">Years of</span>
                     <span className="text-white font-semibold group-hover:text-black">Experience</span>
@@ -67,7 +67,7 @@ const Hero: React.FC = () => {
             {profile.availableForWork && (
                 <div className="mt-6 inline-flex items-center gap-2 text-xs text-green-400 border border-green-400/30 px-3 py-1.5 bg-green-400/5 w-fit animate-pulse">
                     <Briefcase size={14} />
-                    <span>OPEN_TO_OPPORTUNITIES</span>
+                    <span>{profile.availabilityLabel}</span>
                 </div>
             )}
 

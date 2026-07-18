@@ -1,6 +1,6 @@
 # Personal Portfolio Website
 
-Terminal-inspired portfolio for Sai Sampath Yellapanthula — Backend Lead & AI Engineer. Built as a single-page React app with a contact form powered by EmailJS.
+Terminal-inspired portfolio for Sai Sampath Yellapanthula — Full Stack & AI Engineer. Built as a single-page React app with a contact form powered by EmailJS.
 
 ## Features
 
