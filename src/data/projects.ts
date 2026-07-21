@@ -13,6 +13,10 @@ export interface Project {
     details: ProjectDetail[];
     highlights: string[];
     status: "production" | "completed" | "archived";
+    /** Public repo URL; omit when not applicable */
+    github?: string;
+    /** Live demo URL; omit when not applicable */
+    demo?: string;
 }
 
 export const projects: Project[] = [
@@ -48,6 +52,66 @@ export const projects: Project[] = [
         status: "production",
     },
     {
+        id: "recruiter-ai",
+        name: "RECRUITER_AI_ATS",
+        tagline: "Natural-language candidate search with hybrid RAG ranking",
+        description:
+            "Production-shaped ATS search stack: natural-language queries over resumes, interview transcripts, scorecards, screening answers, and recruiter comments. Three-tier routing (structured SQL → hybrid filter+vector → pure semantic), dense+sparse Qdrant with RRF fusion, then Cohere/LLM rerank with per-candidate explanations.",
+        impact:
+            "Turns vague recruiter language into scored, explainable shortlists—not keyword bingo",
+        technologies: [
+            "Bun",
+            "Hono",
+            "PostgreSQL",
+            "Drizzle",
+            "Qdrant",
+            "BullMQ",
+            "Redis",
+            "Gemini",
+            "Cohere",
+            "Docker",
+        ],
+        details: [
+            { label: "Search_Tiers", value: "SQL · Hybrid · Semantic" },
+            { label: "Retrieval", value: "Dense + Sparse RRF" },
+            { label: "Indexed_Docs", value: "5 source types" },
+        ],
+        highlights: [
+            "LLM query extraction classifies strategy and hard filters (location, skills, notice, salary)",
+            "Hybrid Qdrant retrieval fuses dense (Gemini 1536d) and sparse (BM42/tokenizer) via Reciprocal Rank Fusion",
+            "Cross-source aggregation with configurable weights across resumes, transcripts, comments, and screening",
+            "Match scores normalized to [0, 1] for consistent UI thresholds",
+            "Async BullMQ indexing with idempotent chunk UUIDs and overlap-aware chunking",
+            "Multi-sheet XLSX import with dependency-ordered ingest and index enqueue",
+            "JWT roles, DI container, and Docker Compose for Postgres/Redis/Qdrant",
+        ],
+        status: "completed",
+        github: "https://github.com/just-sampath/recruiter_ai",
+    },
+    {
+        id: "agentic-actions",
+        name: "AGENTIC_ACTIONS_ENGINE",
+        tagline: "Deterministic AI agent tool calling",
+        description:
+            "Rearchitected an agentic system from WebSockets to Webhooks, adding state management and making AI tool calls predictable and reliable.",
+        impact: "Transformed unreliable AI agents into production-ready system",
+        technologies: ["Python", "FastAPI", "PyAutoGen", "MongoDB", "OpenAI"],
+        details: [
+            { label: "Architecture", value: "WebSocket → Webhook" },
+            { label: "State", value: "MongoDB persisted" },
+            { label: "Reliability", value: "Deterministic calls" },
+        ],
+        highlights: [
+            "Migrated from WebSockets to Webhooks for reliability",
+            "Added MongoDB state management for resumable conversations",
+            "Restructured tool calling to be deterministic",
+            "Agent responsibility limited to parameter determination",
+            "Clean error handling passed back to LLM",
+            "Supports CRM updates, ticket creation, meeting scheduling",
+        ],
+        status: "production",
+    },
+    {
         id: "lambda-pipeline",
         name: "SERVERLESS_DOC_PROCESSOR",
         tagline: "7-Lambda document processing architecture",
@@ -79,6 +143,36 @@ export const projects: Project[] = [
         status: "production",
     },
     {
+        id: "azure-devops-autocreate",
+        name: "ADO_WORK_ITEM_AUTOMATION",
+        tagline: "User Story → five standard child Tasks, zero duplicates",
+        description:
+            "Azure Functions webhook that listens for Azure DevOps workitem.created. On User Story create, auto-spawns Requirements, Design, Implementation, Test, and Documentation tasks—inheriting Area Path and Iteration Path—with WIQL-based idempotency so retries never double-create.",
+        impact:
+            "Removes repetitive backlog hygiene from every story; safe under webhook retries and partial failures",
+        technologies: [
+            "Azure Functions",
+            "Node.js",
+            "azure-devops-node-api",
+            "WIQL",
+        ],
+        details: [
+            { label: "Trigger", value: "workitem.created webhook" },
+            { label: "Tasks_Per_Story", value: "5 (SDLC template)" },
+            { label: "Idempotency", value: "WIQL child title check" },
+        ],
+        highlights: [
+            "Filters non–User Story events with clean 200 skip responses",
+            "Queries Hierarchy-Forward Task children before create",
+            "Creates only missing titles (case-insensitive)—retry- and re-trigger-safe",
+            "Copies parent Area/Iteration paths; links via Hierarchy-Reverse",
+            "Structured logging with correlation-style context for ops",
+            "Deployable to Azure consumption plan with PAT / Key Vault–ready config",
+        ],
+        status: "completed",
+        github: "https://github.com/just-sampath/azure-devops-work-item-autocreate",
+    },
+    {
         id: "slack-ingestion",
         name: "SLACK_DATA_PIPELINE",
         tagline: "BullMQ parent-child queue architecture",
@@ -98,29 +192,6 @@ export const projects: Project[] = [
             "Prevents rate limiting and maintains data consistency",
             "Automatic retry with exponential backoff",
             "Progress tracking and resumable state",
-        ],
-        status: "production",
-    },
-    {
-        id: "agentic-actions",
-        name: "AGENTIC_ACTIONS_ENGINE",
-        tagline: "Deterministic AI agent tool calling",
-        description:
-            "Rearchitected an agentic system from WebSockets to Webhooks, adding state management and making AI tool calls predictable and reliable.",
-        impact: "Transformed unreliable AI agents into production-ready system",
-        technologies: ["Python", "FastAPI", "PyAutoGen", "MongoDB", "OpenAI"],
-        details: [
-            { label: "Architecture", value: "WebSocket → Webhook" },
-            { label: "State", value: "MongoDB persisted" },
-            { label: "Reliability", value: "Deterministic calls" },
-        ],
-        highlights: [
-            "Migrated from WebSockets to Webhooks for reliability",
-            "Added MongoDB state management for resumable conversations",
-            "Restructured tool calling to be deterministic",
-            "Agent responsibility limited to parameter determination",
-            "Clean error handling passed back to LLM",
-            "Supports CRM updates, ticket creation, meeting scheduling",
         ],
         status: "production",
     },
@@ -155,5 +226,38 @@ export const projects: Project[] = [
             "Secrets Manager for credential management",
         ],
         status: "production",
+    },
+    {
+        id: "emi-calculator",
+        name: "INDIAN_CC_EMI_CALCULATOR",
+        tagline: "Statement-grade regular & no-cost EMI, not a toy formula",
+        description:
+            "React calculator that models how Indian credit-card EMI actually bills: monthly reducing balance, GST 18% on interest, processing fee + GST, pro-rata first period (30-day or actual/365), no-cost merchant discount via PV of installments, full amortization, and month-by-month pre-closure cost.",
+        impact:
+            "Surfaces true total cost above MRP—including the “no-cost” interest GST customers still pay",
+        technologies: [
+            "React",
+            "Vite",
+            "Tailwind CSS",
+            "Vitest",
+            "Testing Library",
+            "GitHub Actions",
+        ],
+        details: [
+            { label: "Modes", value: "Regular + No-cost EMI" },
+            { label: "Day_Count", value: "30/360 · Actual/365" },
+            { label: "Extras", value: "Pre-closure + GST audit" },
+        ],
+        highlights: [
+            "No-cost: base EMIs sum to MRP; principal = PV of payments; merchant discount = MRP − principal",
+            "Statement-perfect month-1 interest using booking→PDD day count",
+            "GST on billed (rounded-to-paise) interest every period",
+            "Pre-closure simulator: fee, residual interest months, optional merchant clawback",
+            "Independent math-audit script for bank-style identities beyond unit tests",
+            "CI pipeline: test → build → deploy to GitHub Pages",
+        ],
+        status: "completed",
+        github: "https://github.com/just-sampath/indian-credit-card-emi-calculator",
+        demo: "https://just-sampath.github.io/indian-credit-card-emi-calculator/",
     },
 ];

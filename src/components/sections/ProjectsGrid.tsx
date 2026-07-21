@@ -1,13 +1,28 @@
 import React, { useState } from 'react';
-import { Command, ChevronDown, ChevronUp, Zap, Server, Database, Cloud, Bot } from 'lucide-react';
+import {
+    Command,
+    ChevronDown,
+    ChevronUp,
+    Zap,
+    Server,
+    Database,
+    Cloud,
+    Bot,
+    Search,
+    Workflow,
+    Calculator,
+} from 'lucide-react';
 import { projects, Project } from '../../data/projects';
 
 const projectIcons: Record<string, React.ReactNode> = {
     'rag-optimization': <Zap size={24} />,
-    'lambda-pipeline': <Cloud size={24} />,
-    'slack-ingestion': <Server size={24} />,
+    'recruiter-ai': <Search size={24} />,
     'agentic-actions': <Bot size={24} />,
+    'lambda-pipeline': <Cloud size={24} />,
+    'azure-devops-autocreate': <Workflow size={24} />,
+    'slack-ingestion': <Server size={24} />,
     'aws-infrastructure': <Database size={24} />,
+    'emi-calculator': <Calculator size={24} />,
 };
 
 const ProjectsGrid: React.FC = () => {
@@ -153,6 +168,31 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, icon, isExpan
                                     ))}
                                 </ul>
                             </div>
+
+                            {(project.github || project.demo) && (
+                                <div className="mb-6 flex flex-wrap gap-3">
+                                    {project.github && (
+                                        <a
+                                            href={project.github}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 border border-black text-black hover:bg-black hover:text-white transition-colors"
+                                        >
+                                            GitHub ↗
+                                        </a>
+                                    )}
+                                    {project.demo && (
+                                        <a
+                                            href={project.demo}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 border border-black bg-black text-white hover:bg-white hover:text-black transition-colors"
+                                        >
+                                            Live Demo ↗
+                                        </a>
+                                    )}
+                                </div>
+                            )}
                         </>
                     )}
                 </div>
