@@ -29,30 +29,6 @@
   }
 }
 
-@layer utilities {
-  .animate-in {
-    animation-name: enter;
-    animation-duration: 150ms;
-    --tw-enter-opacity: initial;
-    --tw-enter-scale: initial;
-    --tw-enter-rotate: initial;
-    --tw-enter-translate-x: initial;
-    --tw-enter-translate-y: initial;
-  }
-
-  .fade-in {
-    --tw-enter-opacity: 0;
-  }
-
-  .zoom-in-95 {
-    --tw-enter-scale: 0.95;
-  }
-
-  .slide-in-from-bottom-10 {
-    --tw-enter-translate-y: 2.5rem;
-  }
-}
-
 /* Custom Animations */
 @keyframes width {
   from {
@@ -64,12 +40,13 @@
   }
 }
 
-@keyframes scanline {
-  0% {
-    transform: translateY(-100%);
-  }
-
-  100% {
-    transform: translateY(100%);
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

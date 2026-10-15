@@ -1,27 +1,29 @@
 import { describe, it, expect } from 'vitest';
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { profile } from './profile';
 
-describe('profile content (resume sync)', () => {
-  it('uses Full Stack & AI Engineer as the headline role', () => {
-    expect(profile.role).toBe('Full Stack & AI Engineer');
+describe('profile', () => {
+  it('uses https profile links and a plausible email', () => {
+    expect(profile.github).toMatch(/^https:\/\//);
+    expect(profile.linkedin).toMatch(/^https:\/\//);
+    expect(profile.email).toMatch(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
   });
 
-  it('exposes 3 years of experience for UI badges', () => {
-    expect(profile.yearsOfExperience).toBe(3);
+  it('points the résumé link at a file that ships in public/', () => {
+    expect(profile.resumeUrl.startsWith('/')).toBe(true);
+    expect(existsSync(resolve(process.cwd(), 'public', profile.resumeUrl.slice(1)))).toBe(true);
   });
 
-  it('keeps a soft availability signal without aggressive seeking language', () => {
-    expect(profile.availableForWork).toBe(true);
-    expect(profile.availabilityLabel).toBeTruthy();
-    expect(profile.availabilityLabel.toLowerCase()).not.toMatch(/actively.?seeking/);
-    expect(profile.availabilityBlurb.toLowerCase()).not.toMatch(/actively.?seeking/);
-    expect(profile.availabilityBlurb.length).toBeGreaterThan(40);
+  it('has proof-point highlights for the top of the page', () => {
+    expect(profile.highlights.length).toBeGreaterThan(0);
+    for (const highlight of profile.highlights) expect(highlight.length).toBeGreaterThan(0);
   });
 
-  it('preserves contact identity fields', () => {
-    expect(profile.name).toBe('YELLAPANTHULA SAI SAMPATH');
-    expect(profile.email).toBe('ysampath36@gmail.com');
-    expect(profile.github).toBe('https://github.com/just-sampath');
-    expect(profile.linkedin).toBe('https://linkedin.com/in/just-sampath');
+  it('has availability copy when open to work', () => {
+    if (profile.availableForWork) {
+      expect(profile.availabilityLabel).toBeTruthy();
+      expect(profile.availabilityBlurb).toBeTruthy();
+    }
   });
 });

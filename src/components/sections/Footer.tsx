@@ -1,58 +1,63 @@
-import React, { useState } from 'react';
-import { Mail, Globe, Briefcase, Github, Linkedin } from 'lucide-react';
+import React from 'react';
+import { Mail, Globe, Briefcase, Github, Linkedin, FileText } from 'lucide-react';
 import { profile } from '../../data/profile';
-import { useInterval } from '../../hooks/useInterval';
 import ContactForm from './ContactForm';
 
 const Footer: React.FC = () => {
-    const [currentTime, setCurrentTime] = useState(new Date());
-    const [uptime, setUptime] = useState(0);
-
-    useInterval(() => {
-        setCurrentTime(new Date());
-        setUptime(prev => prev + 1);
-    }, 1000);
-
     return (
         <footer id="contact" className="border-t border-white/20 pt-20 pb-10">
             <div className="grid md:grid-cols-2 gap-12">
                 <div>
                     <div className="flex items-center gap-3 mb-6">
-                        <div className="w-3 h-3 bg-green-500 animate-pulse rounded-full"></div>
+                        <div className="w-3 h-3 bg-green-500 rounded-full" aria-hidden="true"></div>
                         <h2 className="text-3xl sm:text-4xl font-bold text-white">CONTACT</h2>
                     </div>
 
                     {profile.availableForWork && (
                         <div className="mb-6 inline-flex items-center gap-2 text-xs text-green-400 border border-green-400/30 px-3 py-1.5 bg-green-400/5">
-                            <Briefcase size={14} />
+                            <Briefcase size={14} aria-hidden="true" />
                             <span>{profile.availabilityLabel}</span>
                         </div>
                     )}
 
-                    <p className="text-gray-400 mb-8 max-w-md leading-relaxed">
+                    <p className="text-gray-300 mb-8 max-w-md leading-relaxed">
                         {profile.availabilityBlurb}
                     </p>
 
                     <div className="space-y-6">
                         <a
                             href={`mailto:${profile.email}`}
-                            className="flex items-center gap-4 text-sm group cursor-pointer hover:translate-x-2 transition-transform"
+                            className="flex items-center gap-4 text-sm group cursor-pointer hover:translate-x-2 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                         >
                             <div className="p-3 border border-gray-700 group-hover:border-white transition-colors">
-                                <Mail className="text-gray-500 group-hover:text-white" size={18} />
+                                <Mail className="text-gray-400 group-hover:text-white" size={18} aria-hidden="true" />
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-[10px] text-gray-500 uppercase">Email_Address</span>
-                                <span className="text-gray-300 group-hover:text-white text-base">{profile.email}</span>
+                                <span className="text-[10px] text-gray-400 uppercase">Email_Address</span>
+                                <span className="text-gray-300 group-hover:text-white text-base break-all">{profile.email}</span>
                             </div>
                         </a>
-                        <div className="flex items-center gap-4 text-sm group hover:translate-x-2 transition-transform">
+                        <a
+                            href={profile.resumeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-4 text-sm group cursor-pointer hover:translate-x-2 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                        >
                             <div className="p-3 border border-gray-700 group-hover:border-white transition-colors">
-                                <Globe className="text-gray-500 group-hover:text-white" size={18} />
+                                <FileText className="text-gray-400 group-hover:text-white" size={18} aria-hidden="true" />
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-[10px] text-gray-500 uppercase">Location_Data</span>
-                                <span className="text-gray-300 group-hover:text-white text-base">{profile.location}</span>
+                                <span className="text-[10px] text-gray-400 uppercase">Résumé</span>
+                                <span className="text-gray-300 group-hover:text-white text-base">Open PDF ↗</span>
+                            </div>
+                        </a>
+                        <div className="flex items-center gap-4 text-sm">
+                            <div className="p-3 border border-gray-700">
+                                <Globe className="text-gray-400" size={18} aria-hidden="true" />
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="text-[10px] text-gray-400 uppercase">Location_Data</span>
+                                <span className="text-gray-300 text-base">{profile.location}</span>
                             </div>
                         </div>
 
@@ -65,7 +70,7 @@ const Footer: React.FC = () => {
                                 aria-label="GitHub"
                                 className="p-3 border border-gray-700 hover:border-white hover:bg-white hover:text-black transition-all group focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                             >
-                                <Github size={20} className="text-gray-500 group-hover:text-black" aria-hidden="true" />
+                                <Github size={20} className="text-gray-400 group-hover:text-black" aria-hidden="true" />
                             </a>
                             <a
                                 href={profile.linkedin}
@@ -74,41 +79,23 @@ const Footer: React.FC = () => {
                                 aria-label="LinkedIn"
                                 className="p-3 border border-gray-700 hover:border-white hover:bg-white hover:text-black transition-all group focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                             >
-                                <Linkedin size={20} className="text-gray-500 group-hover:text-black" aria-hidden="true" />
+                                <Linkedin size={20} className="text-gray-400 group-hover:text-black" aria-hidden="true" />
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <div className="bg-gray-900/30 p-6 sm:p-8 border border-gray-800 font-mono text-xs text-gray-500 backdrop-blur-sm hover:border-gray-600 transition-colors">
-                    <div className="flex justify-between mb-4 border-b border-gray-800 pb-4">
-                        <span>SYSTEM_DIAGNOSTICS</span>
-                        <span className="text-green-500 flex items-center gap-1">
-                            <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-                            ALL_SYSTEMS_GO
-                        </span>
-                    </div>
-                    <div className="space-y-3">
-                        <div className="flex justify-between"><span>SESSION_UPTIME</span><span className="text-white font-bold">{uptime}s</span></div>
-                        <div className="flex justify-between"><span>EXPERIENCE</span><span className="text-white">{profile.yearsOfExperience}+ Years</span></div>
-                        <div className="flex justify-between"><span>SPECIALIZATION</span><span className="text-white">Full Stack + RAG</span></div>
-                        <div className="flex justify-between"><span>FRAMEWORK</span><span className="text-white">React + Vite</span></div>
-                        <div className="flex justify-between"><span>RENDERER</span><span className="text-white">Tailwind_v4</span></div>
-                        <div className="flex justify-between"><span>LOCAL_TIME</span><span className="text-white">{currentTime.toLocaleTimeString()}</span></div>
-                        <div className="mt-8 text-gray-600 pt-4 border-t border-gray-800 text-center">
-                            // Built by Sampath <br />
-                            // &copy; {new Date().getFullYear()} All Rights Reserved
-                        </div>
-                    </div>
+                <div>
+                    <p className="text-[10px] uppercase tracking-widest text-gray-400 font-mono mb-3">
+                        CONTACT_CHANNEL // form
+                    </p>
+                    <ContactForm />
                 </div>
             </div>
 
-            <div className="mt-12 max-w-2xl">
-                <p className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mb-3">
-                    CONTACT_CHANNEL // form
-                </p>
-                <ContactForm />
-            </div>
+            <p className="mt-16 pt-6 border-t border-gray-800 text-center text-xs text-gray-400 font-mono">
+                // &copy; {new Date().getFullYear()} Sai Sampath Yellapanthula
+            </p>
         </footer>
     );
 };

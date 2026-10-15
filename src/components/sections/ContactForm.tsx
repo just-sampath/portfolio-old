@@ -19,7 +19,7 @@ const MAX_LENGTH: Record<keyof ContactFields, number> = {
 };
 
 const fieldClass = (hasError: boolean) =>
-  `w-full bg-black border px-3 py-2 text-sm text-white placeholder:text-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black focus:border-white disabled:opacity-50 ${
+  `w-full bg-black border px-3 py-2 text-sm text-white placeholder:text-gray-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black focus:border-white disabled:opacity-50 ${
     hasError ? 'border-red-500/70' : 'border-white/20'
   }`;
 
@@ -38,15 +38,15 @@ const ContactForm: React.FC = () => {
       aria-busy={submitting}
     >
       <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-1">
-        <span className="text-[10px] uppercase tracking-widest text-gray-500">
+        <span className="text-[10px] uppercase tracking-widest text-gray-400">
           // INITIATE_TRANSMISSION
         </span>
-        <span className="text-[10px] text-gray-600">contact.form</span>
+        <span className="text-[10px] text-gray-400">contact.form</span>
       </div>
 
       {!configured && (
         <p role="status" className="text-xs text-amber-400/90 border border-amber-400/30 bg-amber-400/5 px-3 py-2">
-          ! Contact form is temporarily unavailable. Please use email or social links above.
+          ! Contact form is temporarily unavailable. Please use the email or social links instead.
         </p>
       )}
 
@@ -60,7 +60,7 @@ const ContactForm: React.FC = () => {
           <div key={key} className="space-y-1.5">
             <label
               htmlFor={id}
-              className="block text-[10px] uppercase tracking-widest text-gray-500"
+              className="block text-[10px] uppercase tracking-widest text-gray-400"
             >
               {FIELD_LABELS[key]}
             </label>

@@ -5,13 +5,29 @@ import Header from './components/sections/Header';
 import Hero from './components/sections/Hero';
 import SkillsMatrix from './components/sections/SkillsMatrix';
 import ExperienceLog from './components/sections/ExperienceLog';
+import CaseStudies from './components/sections/CaseStudies';
 import ProjectsGrid from './components/sections/ProjectsGrid';
 import Footer from './components/sections/Footer';
 import { useScrollSpy } from './hooks/useScrollSpy';
 
-const SECTION_IDS = ['about', 'skills', 'experience', 'projects', 'contact'];
+const SECTION_IDS = ['about', 'experience', 'case-studies', 'skills', 'projects', 'contact'];
 /** Fallback if the spy never reports the clicked target. */
 const MANUAL_NAV_MS = 2500;
+const BOOT_SEEN_KEY = 'portfolio:boot-seen';
+
+function prefersReducedMotion(): boolean {
+  return window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+}
+
+/** Boot screen plays once per browser session, and never with reduced motion. */
+function shouldSkipBoot(): boolean {
+  if (prefersReducedMotion()) return true;
+  try {
+    return sessionStorage.getItem(BOOT_SEEN_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
 
 type PinAction =
   | { type: 'pin'; id: string }
@@ -35,7 +51,7 @@ function navPinReducer(pin: string | null, action: PinAction): string | null {
 }
 
 const App: React.FC = () => {
-  const [booted, setBooted] = useState(false);
+  const [booted, setBooted] = useState(shouldSkipBoot);
   const spiedSection = useScrollSpy(SECTION_IDS, booted);
   const [manualNavId, dispatchPin] = useReducer(navPinReducer, null);
   const fallbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -67,6 +83,11 @@ const App: React.FC = () => {
       : spiedSection;
 
   const handleBootComplete = () => {
+    try {
+      sessionStorage.setItem(BOOT_SEEN_KEY, '1');
+    } catch {
+      // Storage unavailable (private mode); the boot screen just plays again.
+    }
     setBooted(true);
   };
 
@@ -82,7 +103,7 @@ const App: React.FC = () => {
       fallbackTimerRef.current = null;
     }, MANUAL_NAV_MS);
 
-    element.scrollIntoView({ behavior: 'smooth' });
+    element.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
   };
 
   if (!booted) {
@@ -95,8 +116,9 @@ const App: React.FC = () => {
 
       <div className="pt-24 px-4 sm:px-8 md:px-12 lg:px-16 max-w-[1600px] mx-auto pb-20">
         <Hero />
-        <SkillsMatrix />
         <ExperienceLog />
+        <CaseStudies />
+        <SkillsMatrix />
         <ProjectsGrid />
         <Footer />
       </div>

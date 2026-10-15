@@ -1,12 +1,14 @@
 export interface Profile {
     name: string;
     role: string;
-    tagline: string;
-    mission: string;
+    /** Proof points shown at the top of the page */
+    highlights: string[];
     email: string;
     location: string;
     github: string;
     linkedin: string;
+    /** Path to the résumé PDF in public/ */
+    resumeUrl: string;
     availableForWork: boolean;
     yearsOfExperience: number;
     availabilityLabel: string;
@@ -16,17 +18,15 @@ export interface Profile {
 export const profile: Profile = {
     name: "YELLAPANTHULA SAI SAMPATH",
     role: "Full Stack & AI Engineer",
-    tagline: "Building Scalable Systems | RAG Pipelines | Full Stack & Cloud",
-    mission: `> SYSTEM.INIT: Full stack engineer with 3+ years building production AI systems.
-> 
-> EXPERTISE: Node.js | Python | TypeScript | AWS | Vector Databases | RAG
-> 
-> CURRENT_MISSION: Shipping scalable full-stack and AI platforms.
-> Specialized in RAG chatbots, serverless infrastructure, and event-driven backends.`,
+    highlights: [
+        "Cut RAG p99 latency from 60–80s to 10–15s",
+        "Shipped a banking RAG chatbot to production in 3 days",
+    ],
     email: "ysampath36@gmail.com",
     location: "India (Remote)",
     github: "https://github.com/just-sampath",
     linkedin: "https://linkedin.com/in/just-sampath",
+    resumeUrl: "/Sai_Sampath_Yellapanthula_Resume.pdf",
     availableForWork: true,
     yearsOfExperience: 3,
     availabilityLabel: "OPEN_TO_SELECTIVE_ROLES",

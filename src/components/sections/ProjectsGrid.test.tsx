@@ -2,6 +2,7 @@ import { describe, it, expect, afterEach } from 'vitest';
 import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import ProjectsGrid from './ProjectsGrid';
+import { projects } from '../../data/projects';
 
 afterEach(() => {
   cleanup();
@@ -41,12 +42,11 @@ describe('ProjectsGrid links', () => {
     expect(screen.queryByRole('link', { name: /Live Demo/i })).toBeNull();
   });
 
-  it('does not show external links for a work showcase without github/demo', () => {
+  it('shows one card per open-source project and no work case studies', () => {
     render(<ProjectsGrid />);
 
-    fireEvent.click(screen.getByRole('button', { name: /RAG_PIPELINE_OPTIMIZER/i }));
-
-    expect(screen.queryByRole('link', { name: /GitHub/i })).toBeNull();
-    expect(screen.queryByRole('link', { name: /Live Demo/i })).toBeNull();
+    const cards = screen.getAllByRole('button', { expanded: false });
+    expect(cards).toHaveLength(projects.length);
+    expect(screen.queryByText('RAG_PIPELINE_OPTIMIZER')).toBeNull();
   });
 });

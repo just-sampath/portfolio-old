@@ -4,8 +4,9 @@ Terminal-inspired portfolio for Sai Sampath Yellapanthula — Full Stack & AI En
 
 ## Features
 
-- Responsive terminal-style layout (sections: About, Skills, Experience, Projects, Contact)
-- Boot screen and typewriter UI accents
+- Responsive terminal-style layout (sections: About, Experience, Case Studies, Skills, Projects, Contact)
+- Boot screen (once per session; skipped with reduced motion)
+- Résumé PDF served from `public/`
 - Contact form via EmailJS (`@emailjs/browser`)
 - SEO meta tags, Open Graph (PNG), Twitter Card, canonical, robots/sitemap
 - Type-safe development with TypeScript
@@ -30,9 +31,9 @@ src/
 ├── components/
 │   ├── layout/       # Terminal shell layout
 │   ├── sections/     # Hero, skills, experience, projects, contact, footer
-│   └── ui/           # Boot screen, typewriter, shared UI
+│   └── ui/           # Boot screen
 ├── data/             # Profile, skills, experience, projects content
-├── hooks/            # Contact form, scroll spy, interval, escape key
+├── hooks/            # Contact form, scroll spy, interval
 ├── lib/              # Validation and EmailJS client
 ├── types/            # Ambient type declarations
 ├── App.tsx
